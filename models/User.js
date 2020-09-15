@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const UserSchema = new Schema({
-  name: {
+  username: {
     type: String,
     required: true
   },
@@ -18,7 +18,37 @@ const UserSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
+  email_checked: {
+    type: Boolean,
+    default: false,
+    required: true
+  },
+  liked_spots: {
+    type: Array,
+    default: [],
+    required: true,
+  },
+  added_spots: {
+    type: Array,
+    default: [],
+    required: true,
+  },
+  followers: {
+    type: Array,
+    default: [],
+    required: true,
+  },
+  follows: {
+    type: Array,
+    default: [],
+    required: true,
+  },
+  followers: {
+    type: Array,
+    default: [],
+    required: true,
+  },
 });
 
 module.exports = User = mongoose.model("users", UserSchema);

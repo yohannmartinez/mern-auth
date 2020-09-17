@@ -1,0 +1,50 @@
+.searchBar{
+  &__container{
+    position:absolute;
+    left:2em;
+    top:1em;
+    border-radius: 0.3em;
+    background-color: white;
+    height:3em;
+    width:20em;
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.2);
+    display:flex;
+    overflow: hidden;
+    z-index: 20;
+  }
+
+  &__menuContainer{
+    width: 3em;
+    padding:0.8em;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  &__menuContainer::after{
+    content:"";
+    width:1px;
+    position:absolute;
+    height:60%;
+    background-color: #999999;
+    top:50%;
+    transform: translateY(-50%);
+    right:0;
+  }
+
+  &__menuIcon{
+    filter: invert(10%) sepia(9%) saturate(5052%) hue-rotate(173deg) brightness(92%) contrast(93%);
+  }
+
+  &__input{
+    flex:1;
+    border:none;
+    display:flex;
+    padding:0 0.7em;
+    vertical-align: middle;
+    margin-top: 2px;
+    font-family: "Gilroy";
+    font-weight: bold;
+    color:#0f2133;
+    font-size: 0.9em;
+  }
+}

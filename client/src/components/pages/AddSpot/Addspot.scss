@@ -1,0 +1,96 @@
+.addSpot{
+    &__formContainer{
+        padding:2em 1em;
+        display:flex; 
+        align-items: center;
+        justify-content: center;
+        min-height:100vh;
+        flex-direction: column;
+    }
+
+    &__title{
+        font-weight: 800;
+        font-family: "Gilroy";
+        margin:1em 0;
+        font-size: 2em;
+    }
+
+    &__stepContainer{
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    &__stepDescription{
+        margin-bottom: 1em;
+    }
+
+    &__mapContainer{
+        width:30em;
+        height:15em;
+        position: relative;
+        border-radius: 0.5em;
+        overflow: hidden;
+    }
+
+    &__mapContainer::after{
+        content:"";
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-100%);
+        background-image: url('../../../assets/pin.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        height:4em;
+        width:2em;
+    }
+
+    &__stepButtonsContainer{
+        display: flex;
+        width:10em;  
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__nextStepButton,&__previousStepButton,&__addSpotButton{
+        border-radius: 0.3em;
+        font-size: 1em;
+        font-weight: bold;
+        width:100%;
+        text-align: center;
+        padding:0.5em 0;
+
+    }
+
+    &__nextStepButton,&__addSpotButton{
+        background-color:#0f2133;
+        color:white;
+        margin-top: 1em;
+    }
+
+    &__previousStepButton{
+        background-color:#d1d1d1;
+        color:rgb(29, 29, 29);
+        margin-top: 1em;
+    }
+
+    &__input{
+        border:none;
+        font-family: "Gilroy";
+        font-weight: bold;
+        color:#0f2133;
+        font-size: 0.9em;
+        padding:0 0.7em;
+        position: relative;
+        border-bottom: 1px solid #1e4266a8;
+        transition: 0.5s;
+    }
+
+    &__input:focus{
+        border-bottom: 1px solid #0f2133;
+    }
+
+}

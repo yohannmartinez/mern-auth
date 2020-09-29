@@ -1,0 +1,87 @@
+@import '../../../utils/base.scss';
+
+.spot{
+    &__globalContainer{
+        display: flex;
+        justify-content: center;
+    }
+
+
+    &__contentContainer{
+        max-width: 1200px;
+        // border:1px solid red;
+        width:100%;
+        padding:2em;
+        display: flex;
+    }
+
+    &__leftContainer{
+        // border:1px solid blue;  
+        flex:2;
+        padding-right:2em;
+    }
+    
+    &__subTitle{
+        color:#14304b;
+        font-weight: 700;
+        font-size: 1.2em;
+        padding:1em 0;
+    }
+    
+    &__mapContainer{
+        // border:1px solid yellow;
+        overflow: hidden;
+        border-radius: 0.7em;
+        position: relative;
+        height:30em;
+    }
+    
+    &__flexContainer{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__likeButton{
+        display: inline-flex;
+        align-items: center;
+        font-weight: 600;
+        font-size: 1.1em;
+        color:#000000;
+        margin-right:0.5em;
+        &__icon{
+            width:1.5em;
+            height:1.5em;
+            margin-right: 1em;
+            margin-left: 2em;
+        }
+    }
+
+    &__spotName{
+        font-weight: 800;
+        font-size: 2em;
+        margin:1em 0 ;
+    }
+
+    &__descriptionContainer{
+        border-top: 1px solid rgb(213, 213, 213);
+        margin-top:2em;
+    }
+
+    &__reviewsContainer{
+        background-color: $base-color;
+        margin-top:2em;
+        border-radius: 0.5em;
+        padding:1em;
+        display: flex;
+        justify-content: center;
+        color:white;
+
+    }
+
+    &__rightContainer{
+        border:1px solid #14304b;
+        position: relative;
+        flex:1;
+    }
+}

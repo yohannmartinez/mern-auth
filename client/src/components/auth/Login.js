@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
+import './Login.scss'
+import variables from "../../utils/base.scss"
 
 class Login extends Component {
   constructor() {
@@ -16,13 +18,13 @@ class Login extends Component {
   componentDidMount() {
     // If logged in and user navigates to Login page, should redirect them to dashboard
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+      this.props.history.push("/");
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+      this.props.history.push("/");
     }
 
     if (nextProps.errors) {
@@ -51,47 +53,50 @@ class Login extends Component {
     const { errors } = this.state;
 
     return (
-      <div >
-        Login
-        <form noValidate onSubmit={this.onSubmit}>
-          <div >
-            <input
-              onChange={this.onChange}
-              value={this.state.email}
-              error={errors.email}
-              id="email"
-              type="email"
+      <div className="login__container">
+        <div className="login__containerLeft">
+          <h1 className="login__title">Bienvenue sur<b style={{color:variables.baseColor}}> Mispot</b></h1>
+          <p className="littleTextGrey">Merci d'entrer vos informations de connexion</p>
+          <form noValidate onSubmit={this.onSubmit}>
+            <div >
+              <input
+                onChange={this.onChange}
+                value={this.state.email}
+                error={errors.email}
+                id="email"
+                type="email"
 
-            />
-            <label htmlFor="email">Email</label>
-            <span className="red-text">
-              {errors.email}
-              {errors.emailnotfound}
-            </span>
-          </div>
-          <div >
-            <input
-              onChange={this.onChange}
-              value={this.state.password}
-              error={errors.password}
-              id="password"
-              type="password"
-            />
-            <label htmlFor="password">Password</label>
-            <span className="red-text">
-              {errors.password}
-              {errors.passwordincorrect}
-            </span>
-          </div>
-          <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-            <button
+              />
+              <label htmlFor="email">Email</label>
+              <span className="red-text">
+                {errors.email}
+                {errors.emailnotfound}
+              </span>
+            </div>
+            <div >
+              <input
+                onChange={this.onChange}
+                value={this.state.password}
+                error={errors.password}
+                id="password"
+                type="password"
+              />
+              <label htmlFor="password">Password</label>
+              <span className="red-text">
+                {errors.password}
+                {errors.passwordincorrect}
+              </span>
+            </div>
+            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+              <button
 
-              type="submit"
-            >
-              Login
+                type="submit"
+              >
+                Login
                 </button>
-          </div>
-        </form>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

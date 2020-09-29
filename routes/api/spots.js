@@ -10,114 +10,81 @@ const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
 // Load User model
-const Spots = require("../../models/Spot");
+const Spot = require("../../models/Spot");
 
-// @route POST api/users/register
-// @desc Register user
+// @route POST api/spots/add
+// @desc Add spot
 // @access Public
 router.post("/add", (req, res) => {
-  // Form validation
-  console.log(req.body)
-  const { errors, isValid } = validateRegisterInput(req.body);
-
-  // Check validation
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
-  console.log("oklm")
-
-  User.findOne({ username: req.body.username }).then(user => {
-    if (user) {
-      return res.status(400).json({ username: "Username already exists" });
-    } else {
-      User.findOne({ email: req.body.email }).then(user => {
-        if (user) {
-          return res.status(400).json({ email: "Email already exists" });
-        } else {
-          const newUser = new User({
-            username: req.body.username,
-            email: req.body.email,
-            password: req.body.password,
-          });
-
-          // Hash password before saving in database
-          bcrypt.genSalt(10, (err, salt) => {
-            bcrypt.hash(newUser.password, salt, (err, hash) => {
-              if (err) throw err;
-              newUser.password = hash;
-              newUser
-                .save()
-                .then(user => res.json(user))
-                .catch(err => console.log(err));
-            });
-          });
-        }
-      })
-    }
-  });
+  const newSpot = new Spot({
+    longitude: req.body.longitude,
+    latitude: req.body.latitude,
+    name: req.body.name,
+    type: req.body.type,
+    added_by: req.body.added_by,
+    added_timestamp: req.body.added_timestamp,
+    is_indoor: req.body.isIndoor,
+    description: req.body.description,
+    size: req.body.size,
+  })
+  newSpot.save().then(spot => res.status(200).send({ spot: spot }))
+    .catch(err => console.log(err));
 });
 
-// @route POST api/users/login
-// @desc Login user and return JWT token
+// @route GET api/spots/getAll
+// @desc Get all spots
 // @access Public
-router.post("/login", (req, res) => {
-  // Form validation
-
-  const { errors, isValid } = validateLoginInput(req.body);
-
-  // Check validation
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
-
-  const email = req.body.email;
-  const password = req.body.password;
-
-  // Find user by email
-  User.findOne({ email }).then(user => {
-    // Check if user exists
-    if (!user) {
-      return res.status(404).json({ emailnotfound: "Email not found" });
+router.get("/getAll", (req, res) => {
+  Spot.find({},function(err,spots){
+    if(spots) {
+      res.status(200).send({ spots : spots })
+    } else {
+      res.status(400).send(err)
     }
-
-    // Check password
-    bcrypt.compare(password, user.password).then(isMatch => {
-      if (isMatch) {
-        // User matched
-        // Create JWT Payload
-        const payload = {
-          id: user.id,
-          username: user.username,
-          email: user.email,
-          email_checked: user.email_checked,
-          liked_spots : user.liked_spots,
-          added_spots : user.added_spots,
-          followers: user.followers,
-          follows: user.follows,
-          password: user.password,
-        };
-
-        // Sign token
-        jwt.sign(
-          payload,
-          keys.secretOrKey,
-          {
-            expiresIn: 31556926 // 1 year in seconds
-          },
-          (err, token) => {
-            res.json({
-              success: true,
-              token: "Bearer " + token
-            });
-          }
-        );
-      } else {
-        return res
-          .status(400)
-          .json({ passwordincorrect: "Password incorrect" });
-      }
-    });
-  });
+  })
 });
+
+// @route GET api/spots/getAddedSpotsByUserId
+// @desc Get all spots added by a user
+// @access Public
+router.get("/getAddedSpotsByUserId", (req, res) => {
+  Spot.find({added_by : req.query.user_id},function(err,spots){
+    if(spots) {
+      res.status(200).send({ spots : spots })
+    } else {
+      res.status(400).send(err)
+    }
+  })
+});
+
+// @route GET api/spots/getSpotById
+// @desc Get spot by spot_id
+// @access Public
+router.get("/getSpotById", (req, res) => {
+  Spot.find({_id : req.query.spot_id},function(err,spot){
+    if(err) {
+      res.status(400).send(err)
+    } else {
+      res.status(200).send({ spot : spot })
+    }
+  })
+});
+
+
+// @route POST api/spots/updateSpot
+// @desc update spot with spot_id
+// @access Public
+router.post('/updateSpot', (req, res) => {
+  Spot.findOneAndUpdate({ _id: req.body.spot_id }, req.body.spot,{new:true}, function (err, spot) {
+    if (spot) {
+      res.status(200).send({ spot: spot })
+    } else {
+      res.status(400).send(err)
+    }
+  })
+})
+
+
+
 
 module.exports = router;

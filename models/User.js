@@ -29,6 +29,16 @@ const UserSchema = new Schema({
     default: [],
     required: true,
   },
+  disliked_spots: {
+    type: Array,
+    default: [],
+    required: true,
+  },
+  reviews:{
+    type:Array,
+    default:[],
+    required: true,
+  },
   added_spots: {
     type: Array,
     default: [],
@@ -47,6 +57,11 @@ const UserSchema = new Schema({
   followers: {
     type: Array,
     default: [],
+    required: true,
+  },
+  avatar: {
+    type: String,
+    default: "https://mispotsbucket.s3.eu-west-3.amazonaws.com/emptyuserphoto.png",
     required: true,
   },
 });

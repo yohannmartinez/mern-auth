@@ -1,0 +1,23 @@
+.login{
+  &__container{
+    display: flex;
+    min-height:100vh;
+    border:1px solid red;
+  }
+
+  &__containerLeft{
+    width:50vw;
+    border:1px solid green;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 3em;
+  }
+
+  &__title{
+    font-size: 2em;
+    font-weight: 600;
+    color:#949494;
+    padding:0.5em 0;
+  }
+}

@@ -24,9 +24,18 @@ const SpotSchema = new Schema({
     default:[],
     required: true,
   },
-  added_by: {
+  disliked_by: {
     type: Array,
     default:[],
+    required: true,
+  },
+  reviews:{
+    type: Array,
+    default:[],
+    required: true,
+  },
+  added_by: {
+    type: String,
     required: true
   },
   added_timestamp: {
@@ -37,16 +46,15 @@ const SpotSchema = new Schema({
     type: Boolean,
     required: true
   },
-  Description: {
+  description: {
     type: String,
     default:"",
-    required: true,
   },
-  Size: {
+  size: {
     type: String,
     required: true
   },
-  Followers: {
+  followers: {
     type: Array,
     default:[],
     required: true

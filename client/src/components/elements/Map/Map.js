@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useEffect, useRef } from "react"
+import { connect } from "react-redux"
 import mapboxgl from "mapbox-gl"
+import { setSelectedSpot } from "../../../actions/spotActions"
 import './Map.css';
 
 mapboxgl.accessToken =
@@ -10,6 +12,8 @@ const Map = (props) => {
     const mapZoom = props.map_zoom;
     const userLocation = props.user_location;
     const addControl = props.addControl
+    const spots = props.spots
+    const selectedSpot = props.selectedSpot
 
     //optionnal -- if the props contains this function, active a loop to send center location of the map
     const getCenter = (center) => {
@@ -32,6 +36,38 @@ const Map = (props) => {
             map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'bottom-right');
         }
 
+        if (props.selectedSpot) {
+            map.flyTo({ zoom: 15, center: [props.selectedSpot.longitude, props.selectedSpot.latitude] })
+        }
+        var positionMarker = document.createElement('div');
+        positionMarker.className = "positionMarker";
+        new mapboxgl.Marker({ element: positionMarker }).setLngLat(userLocation).addTo(map)
+
+        if (spots) {
+            spots.map((spot) => {
+                var marker = document.createElement('div');
+                if (spot.type === "0") {
+                    marker.className = 'skateparkMarker';
+                } else if (spot.type === "1") {
+                    marker.className = 'streetMarker';
+                } else if (spot.type === "2") {
+                    marker.className = 'shopMarker';
+                }
+                marker.addEventListener('click', function () {
+                    map.flyTo({
+                        center: [spot.longitude, spot.latitude],
+                        zoom: 15,
+                        speed: 1,
+                    })
+                    if (props.onSelectSpot) {
+                        props.setSelectedSpot(spot);
+                        props.onSelectSpot(spot.name)
+                    }
+                });
+                new mapboxgl.Marker({ element: marker, anchor: 'bottom' }).setLngLat([spot.longitude, spot.latitude]).addTo(map)
+            })
+        }
+
         map.on('move', (e) => {
             let center = map.getCenter();
             if (getCenter) {
@@ -39,16 +75,16 @@ const Map = (props) => {
             }
 
         })
-        // Clean up on unmount
         return () => map.remove();
-    }, [userLocation]);
+    }, [userLocation, spots, selectedSpot]);
 
     return (
         <div>
-
             <div className='map-container' ref={mapContainerRef} />
         </div>
     )
 }
 
-export default Map
+export default connect(
+    null, { setSelectedSpot }
+)(Map);

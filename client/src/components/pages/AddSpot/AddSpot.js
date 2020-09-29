@@ -1,9 +1,8 @@
 import React from 'react'
 import mapboxgl from "mapbox-gl"
 import Map from "../../elements/Map/Map"
-import {connect} from "react-redux"
-import axios from "axios"
-
+import { connect } from "react-redux"
+import { addSpot } from "../../../actions/spotActions"
 import SecondStep from "./SecondStep/SecondStep"
 import ThirdStep from "./ThirdStep/ThirdStep"
 import "./Addspot.scss"
@@ -15,6 +14,7 @@ class AddSpot extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            error: null,
 
             //step states
             current_step: 0,
@@ -42,9 +42,11 @@ class AddSpot extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props)
         navigator.geolocation.getCurrentPosition((position) => {
-            this.setState({ user_location: [position.coords.longitude, position.coords.latitude], map_zoom: 12 });
+            let infos = this.state.spot_infos;
+            infos.latitude = position.coords.latitude;
+            infos.longitude = position.coords.longitude;
+            this.setState({ user_location: [position.coords.longitude, position.coords.latitude], map_zoom: 12, spot_infos: infos });
         }, () => { }, { enableHighAccuracy: true, maximumAge: 0 })
     }
 
@@ -52,21 +54,19 @@ class AddSpot extends React.Component {
         let infos = this.state.spot_infos;
         infos.latitude = center.lat;
         infos.longitude = center.lng;
-        this.setState({spot_infos : infos},()=>{console.log("infos updated handle change",this.state)})
+        this.setState({ spot_infos: infos })
     }
 
     changeIndex(modifiedState, index) {
-        console.log(modifiedState, index)
         let infos = this.state.spot_infos;
         infos[modifiedState] = index;
-        this.setState({spot_infos : infos},()=>{console.log("infos updated handle change",this.state)})
+        this.setState({ spot_infos: infos })
     }
 
     handleChangeSpotInfos(e) {
-        console.log(e.target.name,"event")
         let infos = this.state.spot_infos;
         infos[e.target.name] = e.target.value;
-        this.setState({spot_infos : infos},()=>{console.log("infos updated handle change",this.state)})
+        this.setState({ spot_infos: infos })
     }
 
     render() {
@@ -82,7 +82,10 @@ class AddSpot extends React.Component {
 
                 <div className="addSpot__stepContainer" style={{ display: this.state.current_step === 1 ? "inherit" : "none" }}>
                     <p className="addSpot__stepDescription"><b>Etape 2 :</b> Complétez les informations à propos du Spot</p>
-                    <SecondStep values={this.state.spot_infos} handleChangeSpotInfos={this.handleChangeSpotInfos}/>
+                    <SecondStep values={this.state.spot_infos} handleChangeSpotInfos={this.handleChangeSpotInfos} />
+                    {this.state.error &&
+                        <p className="addSpot__error">{this.state.error}</p>
+                    }
                 </div>
 
                 <div className="addSpot__stepContainer" style={{ display: this.state.current_step === 2 ? "inherit" : "none" }}>
@@ -90,29 +93,45 @@ class AddSpot extends React.Component {
                     <ThirdStep changeIndex={this.changeIndex} values={this.state.spot_infos} handleChangeSpotInfos={this.handleChangeSpotInfos} />
                 </div>
 
+
+
                 <div className="addSpot__stepButtonsContainer">
-                    {this.state.current_step > 0 && this.state.current_step < 3 &&
-                        <button className="addSpot__previousStepButton" onClick={() => { console.log(this.state);this.setState({ current_step: this.state.current_step - 1 }) }}>
-                            Précédant
-                        </button>
-                    }
                     {this.state.current_step < 2 &&
-                        <button className="addSpot__nextStepButton" onClick={() => { this.setState({ current_step: this.state.current_step + 1 }) }}>
+                        <button className="addSpot__nextStepButton" onClick={() => {
+                            if (this.state.current_step === 1 && this.state.spot_infos.name.split('').filter(keys => keys !== " ").length === 0) {
+                                this.setState({ error: "Vous devez donner un nom au Spot" })
+                            } else if (this.state.current_step === 1 && this.state.spot_infos.name.split('').filter(keys => keys !== " ").length > 0 && this.state.spot_infos.name.split('').filter(keys => keys !== " ").length < 5) {
+                                this.setState({ error: "Le nom que vous avez attribué au Spot est trop court" })
+                            } else if (this.state.current_step === 1 && this.state.spot_infos.description.split('').filter(keys => keys !== " ").length < 15) {
+                                this.setState({ error: "Dites-nous en un peu plus à propos du spot !" })
+                            } else {
+                                this.setState({ current_step: this.state.current_step + 1, error: null })
+                            }
+                        }}>
                             Suivant
                         </button>
                     }
+
                     {this.state.current_step === 2 &&
                         <button className="addSpot__addSpotButton" onClick={() => {
                             let infos = this.state.spot_infos;
-                            infos.added_by = this.props.auth.user.username;
+                            infos.added_by = this.props.auth.user._id;
                             infos.added_timestamp = Date.now();
-                            this.setState({spot_infos : infos},()=>{
-                                console.log(this.state.spot_infos)
+                            this.setState({ spot_infos: infos }, () => {
+                                this.props.addSpot(this.state.spot_infos, this.props.history)
                             })
                         }}>
                             Ajouter le spot
                         </button>
                     }
+
+                    {this.state.current_step > 0 && this.state.current_step < 3 &&
+                        <button className="addSpot__previousStepButton" onClick={() => {this.setState({ current_step: this.state.current_step - 1 }) }}>
+                            Précédant
+                        </button>
+                    }
+
+
                 </div>
             </div>
         )
@@ -121,6 +140,7 @@ class AddSpot extends React.Component {
 
 const mapStateToProps = state => ({
     auth: state.auth,
+
 });
 
-export default connect(mapStateToProps)(AddSpot)  
+export default connect(mapStateToProps, { addSpot })(AddSpot)  

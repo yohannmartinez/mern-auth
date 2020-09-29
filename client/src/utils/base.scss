@@ -1,0 +1,47 @@
+$base-color:#2F2F4B;
+$base-color2:#FF9216;
+$base-color3:#949494;
+
+:export{
+    baseColor: $base-color;
+    baseColor2: $base-color2;
+}
+
+.bigTitle{
+    font-size: 2.5em;
+    font-weight:900;
+}
+
+.mediumTitle{
+    font-size: 1.8em;
+    font-weight:900;
+}
+
+.littleTitle{
+    font-size: 1.4em;
+    font-weight:900;
+}
+
+.bigText{
+    font-size: 1.3em;
+    font-weight:500;
+}
+
+.littleText{
+    font-size: 1.1em;
+    font-weight:500;
+}
+
+.littleTextGrey{
+    font-size: 1.1em;
+    font-weight:600;
+    color: $base-color3;
+}
+
+.colorToFilterBase{
+    filter: invert(14%) sepia(4%) saturate(6475%) hue-rotate(202deg) brightness(103%) contrast(87%);
+}
+
+.colorToFilterBase2{
+    filter: invert(60%) sepia(63%) saturate(983%) hue-rotate(345deg) brightness(99%) contrast(105%);
+}

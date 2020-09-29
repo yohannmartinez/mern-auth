@@ -1,0 +1,75 @@
+@import '../../../utils/base.scss';
+
+.user{
+
+    &__globalContainer{
+        display: flex;
+        width:100vw;
+        justify-content: center;
+    }
+
+    &__flexContainer{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 1em;
+    }
+
+    &__contentContainer{
+        max-width: 1200px;
+        border:1px solid red;
+        width:100%;
+        padding:2em;
+    }
+
+    &__bandeauContainer{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__avatarContainer {
+        flex:1;
+        display: flex;
+        justify-content: center;
+    }
+
+    &__infosContainer{
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        flex:2;
+    }
+
+    &__avatar{
+        width:13em;
+        height:13em;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 50%;
+        margin-right: 2em;
+    }
+
+    &__username{
+        font-size: 2em;
+        font-weight: 700;
+        margin-right: 1em;
+    }
+
+    &__followButton{
+        border-radius: 0.2em;
+        background-color: $base-color;
+        padding:0.5em 2em 0.6em 2em;
+        color:white;
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    &__numbers{
+        font-size: 1.2em;
+        margin-top: 1em;
+        margin-right: 1em;
+    }
+}

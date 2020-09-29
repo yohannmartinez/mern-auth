@@ -1,0 +1,72 @@
+@import '../../../utils/base.scss';
+
+.modifyUserProfile{
+
+    &__container{
+        display:flex;
+        width:100vw;
+        min-height:100vh;
+        flex-direction: row;
+        
+        
+    }
+
+    &__categories{
+        display:flex;
+        flex-direction: column;
+        width:15em;
+        border-right: 0.5px solid rgb(211, 211, 211);
+    }
+
+    &__tab,&__back{
+        text-align: center;
+        width:100%;
+        padding:1em 0;
+        font-weight: bold;
+    }
+
+    &__tab{
+        border-bottom: 0.5px solid rgb(211, 211, 211);
+        color:$base-color;
+    }
+
+    &__back{
+        background-color:$base-color;
+        color:white;
+    }
+
+    &__edit{
+        flex-grow: 1;
+        padding:3em;
+        max-width: 30em;
+    }
+
+    &__title{
+        font-weight:800;
+        font-size: 2em;
+        color:$base-color;
+        margin-bottom: 1em;
+    }
+
+    &__sub{
+        font-weight:600;
+        font-size: 1.3em;
+        color:$base-color;
+        margin:1em 0;
+    }
+
+    &__error{
+        color:red;
+        margin-bottom: 1em;
+    }
+
+    &__button{
+        border-radius: 0.3em;
+        font-size: 1em;
+        font-weight: bold;
+        text-align: center;
+        padding:0.5em 1em;
+        background-color:$base-color;
+        color:white;
+    }
+}

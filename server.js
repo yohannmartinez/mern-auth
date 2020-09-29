@@ -5,6 +5,7 @@ const passport = require("passport");
 
 const users = require("./routes/api/users");
 const spots = require("./routes/api/spots");
+const s3 = require("./routes/api/s3");
 
 const app = express();
 
@@ -36,8 +37,8 @@ require("./config/passport")(passport);
 
 // Routes
 app.use("/api/users", users);
-
 app.use("/api/spots", spots);
+app.use("/api/s3", s3);
 
 const port = process.env.PORT || 5000;
 

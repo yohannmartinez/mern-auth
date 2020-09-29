@@ -33,3 +33,34 @@ a.mapboxgl-ctrl-logo{
   box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.3);
 
 }
+
+.positionMarker {
+  background-color: rgb(255, 255, 255);
+  border:0.2em solid rgb(13, 19, 61);
+  width: 1.3em;
+  height: 1.3em;
+  border-radius: 50%;
+}
+
+.skateparkMarker,.streetMarker,.shopMarker{
+  
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 3em;
+  height: 3em;
+  cursor: pointer;
+}
+
+.skateparkMarker{
+  background-image: url("../../../assets/markers/skateparkMarker.svg");
+
+}
+
+.streetMarker{
+  background-image: url("../../../assets/markers/streetMarker.svg");
+}
+
+.shopMarker{
+  background-image: url("../../../assets/markers/shopMarker.svg");
+
+}

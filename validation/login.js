@@ -10,13 +10,13 @@ module.exports = function validateLoginInput(data) {
 
   // Email checks
   if (Validator.isEmpty(data.email)) {
-    errors.email = "Email field is required";
+    errors.email = "Veuillez entrer une adresse email";
   } else if (!Validator.isEmail(data.email)) {
-    errors.email = "Email is invalid";
+    errors.email = "Veuillez entrer une adresse email valide";
   }
   // Password checks
   if (Validator.isEmpty(data.password)) {
-    errors.password = "Password field is required";
+    errors.password = "Mot de passe incorrect";
   }
 
   return {

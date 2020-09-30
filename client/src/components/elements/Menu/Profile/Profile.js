@@ -6,17 +6,9 @@ import './Profile.scss';
 
 const Profile = (props) => {
     return (
-        <div className="profile__container" onClick={() => {
-            if (props.auth.isAuthenticated) {
-                window.location.href = "/user/" + props.auth.user._id
-            } else {
-                window.location.href = "/login"
-            }
-        }}>
-            <div className="profile__circle" >
-                <img src={UserIcon} className="colorToFilterBase" />
-            </div>
-            <span>{props.auth.isAuthenticated ? props.auth.user.username : "Créer un compte"}</span>
+        <div className="profile__container" onClick={() => { window.location.href = "/user/" + props.auth.user._id }}>
+            <div className="profile__circle" style={{ backgroundImage: `url('${props.auth.user.avatar}')` }}></div>
+            <div>{props.auth.user.username}</div>
         </div>
     )
 }

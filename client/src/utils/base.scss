@@ -1,10 +1,15 @@
-$base-color:#2F2F4B;
-$base-color2:#FF9216;
+$primary-color:#292841;
+$primary-color-hover :#1b1a35;
+$secondary-color:#ED988C;
 $base-color3:#949494;
 
+$blue:#BED3FF;
+$green:#43B581;
+$pink:#E7366A;
+
 :export{
-    baseColor: $base-color;
-    baseColor2: $base-color2;
+    baseColor: $primary-color;
+    baseColor2: $secondary-color;
 }
 
 .bigTitle{
@@ -33,13 +38,97 @@ $base-color3:#949494;
 }
 
 .littleTextGrey{
-    font-size: 1.1em;
+    font-size: 1em;
     font-weight:600;
     color: $base-color3;
 }
 
+.inputsContainer{
+    background-color: white;
+    margin:1em 0;
+    border:3px solid rgb(223, 223, 223);
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+}
+
+.inputAuthContainer{
+    border:none;
+    border-bottom:3px solid rgb(223, 223, 223);
+    width:100%;
+    position: relative;
+}
+
+.inputAuthContainer:last-child{
+    border-bottom: 0px;
+}
+
+.inputAuth{
+    width:100%;
+    padding:3em 1em 1em 1em;
+    background-color: transparent;
+    border:none;
+    font-weight: 700;
+    color:$primary-color;
+}
+
+.inputAuthFocus{
+    content:"";
+    position:absolute;
+    height:calc(100% + 4px);
+    width:3px;
+    top:-2px;
+    left:-3px;
+    background-color: $secondary-color;
+    opacity: 0%;
+    transition: 0.3s;
+}
+
+.inputAuth:focus  ~ .inputAuthFocus{
+    opacity: 100%;
+}
+
+.inputAuth:focus  ~ .inputAuthLabel{
+    color:$secondary-color ;
+}
+
+.inputAuthLabel{
+    color:rgb(164, 164, 164) ;
+    position: absolute;
+    left:1em;
+    top:1em;
+}
+
+
+.buttonBlack,.buttonWhite{
+    transition: 0.3s;
+    border-radius: 5px;
+    height:3.2em;
+    padding:0 2.7em;
+    font-size: 1.1em;
+    cursor:pointer;
+    margin-right: 1em;
+}
+
+.buttonBlack{
+    color:white;
+    background-color: $primary-color;
+    font-weight: 600;
+}
+
+.buttonBlack:hover{
+    background-color: $primary-color-hover;
+}
+
+.buttonWhite{
+    color:$primary-color;
+    background-color: white;
+    border: 2.5px solid $primary-color;
+    font-weight: 800;
+}
+
 .colorToFilterBase{
-    filter: invert(14%) sepia(4%) saturate(6475%) hue-rotate(202deg) brightness(103%) contrast(87%);
+    filter: invert(11%) sepia(9%) saturate(3686%) hue-rotate(203deg) brightness(94%) contrast(85%);
 }
 
 .colorToFilterBase2{

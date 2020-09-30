@@ -28,11 +28,11 @@ router.post("/register", (req, res) => {
 
   User.findOne({ username: req.body.username }).then(user => {
     if (user) {
-      return res.status(400).json({ username: "Username already exists" });
+      return res.status(400).json({ username: "Nom d'utilisateur déjà prit" });
     } else {
       User.findOne({ email: req.body.email }).then(user => {
         if (user) {
-          return res.status(400).json({ email: "Email already exists" });
+          return res.status(400).json({ email: "L'adresse Email existe déjà" });
         } else {
           const newUser = new User({
             username: req.body.username,
@@ -77,7 +77,7 @@ router.post("/login", (req, res) => {
   User.findOne({ email }).then(user => {
     // Check if user exists
     if (!user) {
-      return res.status(404).json({ emailnotfound: "Email not found" });
+      return res.status(404).json({ emailnotfound: "L'adresse email n'existe pas" });
     }
 
     // Check password
@@ -116,7 +116,7 @@ router.post("/login", (req, res) => {
       } else {
         return res
           .status(400)
-          .json({ passwordincorrect: "Password incorrect" });
+          .json({ passwordincorrect: "Mot de passe incorrect" });
       }
     });
   });

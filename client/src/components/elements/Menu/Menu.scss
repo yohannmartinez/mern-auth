@@ -1,15 +1,16 @@
+@import '../../../utils/base.scss';
+
 .Menu{
     &__container{
         background-color: white;
         position:absolute;
         height:100vh;
-        width:20em;
+        width:25em;
         left:0;
         transform: translateX(-100%);
         right:0;
         z-index:50;
         box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.2);
-        padding-top:5em;
         transition: 0.5s;
     }
 
@@ -21,5 +22,60 @@
         width:100vw;
         height:100vh;
         z-index: 49;
+    }
+
+    &__topContainer{
+        display: flex;
+        padding:3em 1.5em;
+        justify-content: space-between;
+    }
+
+
+    &__logo{
+        width:7em
+    }
+
+    &__closeButton{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        font-weight: 400;
+        line-height:1px;
+    }
+
+    &__closeIcon{
+        width:1.2em;
+        margin-left: 1em;
+    }
+
+    &__option{
+        color:$primary-color;
+        padding:1.5em 1em;
+        font-weight: 800;
+        font-size: 1.4em;
+        border-top:1px solid rgb(234, 234, 234);
+        cursor: pointer;
+        position: relative;
+    }
+
+    &__new::after{
+        content:"NOUVEAU";
+        background-color: $green;
+        padding:0.4em 0.5em 0.2em 0.5em;
+        color:white;
+        font-size: 0.8em;
+        border-radius: 3px;
+        margin-left: 1em;
+    }
+
+    &__beta::after{
+        content:"BETA";
+        background-color: $pink;
+        padding:0.4em 0.5em 0.2em 0.5em;
+        color:white;
+        font-size: 0.8em;
+        border-radius: 3px;
+        margin-left: 1em;
     }
 }

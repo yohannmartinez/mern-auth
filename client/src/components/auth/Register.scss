@@ -1,6 +1,6 @@
 @import '../../utils/base.scss';
 
-.login{
+.register{
   &__container{
     display: flex;
     min-height:100vh;
@@ -40,6 +40,7 @@
     align-items: center;
     padding-top: 1em;
     padding-bottom: 2em;
+
   }
 
   &__policy{
@@ -48,7 +49,7 @@
   }
 
   &__rightContainer{
-    background-color: $blue;
+    background-color: $secondary-color;
     flex-grow: 1;
   }
 }

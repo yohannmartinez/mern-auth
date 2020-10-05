@@ -9,8 +9,8 @@ const bluebird = require('bluebird');
 const multiparty = require('multiparty');
 
 AWS.config.update({
-  accessKeyId: "AKIAI5AKYOL6YQAGOULA",
-  secretAccessKey: "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"
+  accessKeyId: "AKIAJAAB7JIQO5HXRNQA",
+  secretAccessKey: "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"
 });
 
 // configure AWS to work with promises
@@ -27,8 +27,8 @@ const uploadFile = (buffer, name, type) => {
   const params = {
     ACL: 'public-read',
     Body: buffer,
-    Bucket: "testmispotsbucket",
-    ContentType: type.mime,
+    Bucket: "mispotsbucket",
+    ContentType: type,
     Key: `${name}`,
   };
   return s3.upload(params).promise();
@@ -44,7 +44,7 @@ router.post('/upload', (request, response) => {
       const path = files.file[0].path;
 
       const buffer = fs.readFileSync(path);
-      const type = fileType.fromBuffer(buffer);
+      const type = "image/png";
       const timestamp = Date.now().toString();
       const fileName = `${timestamp + files.file[0].originalFilename}`;
       const data = await uploadFile(buffer, fileName, type);

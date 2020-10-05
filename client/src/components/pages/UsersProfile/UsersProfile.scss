@@ -1,28 +1,39 @@
 @import '../../../utils/base.scss';
 
-.user{
+.user {
 
-    &__globalContainer{
+    &__globalContainer {
         display: flex;
-        width:100vw;
-        justify-content: center;
+        padding: 5.5em 0 0 0;
     }
 
-    &__flexContainer{
+    &__flexContainer {
         display: flex;
         flex-direction: row;
         align-items: center;
         margin-bottom: 1em;
     }
 
-    &__contentContainer{
-        max-width: 1200px;
-        border:1px solid red;
-        width:100%;
-        padding:2em;
+    &__leftContainer,
+    &__rightContainer {
+        min-height: calc(100vh - 5.5em)
     }
 
-    &__bandeauContainer{
+    &__leftContainer {
+        padding: 3em 5em;
+
+    }
+
+    &__rightContainer {
+        flex-grow: 1;
+        background-color: $primary-color;
+        padding: 2em;
+        background-image: url('../../../assets/profile/background.png');
+        background-size: contain;
+        background-position: center;
+    }
+
+    &__bandeauContainer {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -30,46 +41,155 @@
     }
 
     &__avatarContainer {
-        flex:1;
+        flex: 1;
         display: flex;
         justify-content: center;
     }
 
-    &__infosContainer{
+    &__avatar::after {
+        content: "";
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        background-color: $light-blue;
+        border: 3px solid white;
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 50%;
+        transform: translate(0, -100%);
+    }
+
+    &__infosContainer {
         flex-grow: 1;
         display: flex;
         flex-direction: column;
-        flex:2;
+        flex: 2;
     }
 
-    &__avatar{
-        width:13em;
-        height:13em;
+    &__avatar {
+        width: 10em;
+        height: 10em;
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         border-radius: 50%;
+        position: relative;
         margin-right: 2em;
     }
 
-    &__username{
-        font-size: 2em;
+    &__username {
+        font-size: 1.5em;
+        font-weight: 800;
+        margin-right: 1em;
+        color: $primary-color
+    }
+
+    &__createdTime {
+        color: rgb(165, 165, 165);
+        font-weight: 600;
+        font-size: 1em;
+    }
+
+
+    &__followButton,
+    &__logOutButton {
+        border-radius: 0.5em;
+        padding: 0.3em 1em 0.3em 1em;
+        color: white;
+        font-size: 1.1em;
         font-weight: 700;
+    }
+
+    &__followButton {
+        background-color: $light-blue;
+
+    }
+
+    &__logOutButton {
+        background-color: $pink;
+        display: inline;
+        text-align: center;
         margin-right: 1em;
     }
 
-    &__followButton{
-        border-radius: 0.2em;
-        background-color: $primary-color;
-        padding:0.5em 2em 0.6em 2em;
-        color:white;
-        font-size: 1.2em;
-        font-weight: bold;
-    }
-
-    &__numbers{
-        font-size: 1.2em;
+    &__numbers {
         margin-top: 1em;
         margin-right: 1em;
+    }
+
+    &__number {
+        color: $primary-color;
+        font-size: 1.3em;
+        font-weight: 800;
+    }
+
+    &__radio {
+        background-color: white;
+        border-radius: 0.5em;
+        padding: 0.6em;
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__radioElement {
+        font-weight: 700;
+        padding: 0.3em 1em 0.3em 1em;
+        border-radius: 0.5em;
+        cursor: pointer;
+        font-size: 1.2em;
+    }
+
+    &__rightElementContainer {
+        background-color: white;
+        border-radius: 0.5em;
+        padding: 1em;
+        margin-top: 2em;
+        max-width: 40em;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    &__rightElementIcon {
+        width: 3em;
+        height: 3em
+    }
+
+    &__rightElementName {
+        font-size: 1.2em;
+        font-weight: 900;
+        margin-left: 0.5em;
+        color: $primary-color
+    }
+
+    &__rightElementFlex {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__rightElementDate {
+        color: rgb(165, 165, 165);
+        font-weight: 600;
+        font-size: 1em;
+    }
+
+    &__rightElementRate {
+        margin-top:1.5em;
+    }
+
+    &__rightElementContent {
+        font-weight: 800;
+        font-size: 1.1em;
+        margin-top: 0.5em;
+    }
+
+    &__rightElementDescription {
+        color: $primary-color;
+        font-weight: 600;
+        font-size: 1em;
+        margin: 1em 0;
     }
 }

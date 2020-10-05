@@ -7,13 +7,13 @@
         position:fixed;
         top:0;
         left:0;
-        z-index:10;
+        z-index:1000;
     }
     
     &__container{
         background-color: white;
         border-radius: 1em;
-        z-index: 11;
+        z-index: 999;
         position: fixed;
         top:50%;
         left:50%;
@@ -25,9 +25,9 @@
     }
 
     &__description{
-        font-size: 1.4em;
-        font-weight: 700;
-        margin:2em 5em
+        font-size: 1.6em;
+        font-weight: 800;
+        margin:1.5em 5em
     }
 
     &__label{

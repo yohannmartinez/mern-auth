@@ -51,7 +51,6 @@ class Landing extends Component {
       <div>
         <Map selectedSpot={this.props.spot.selectedSpot} user_location={this.state.user_location} map_zoom={this.state.map_zoom} addControl={true} spots={this.state.spots} onSelectSpot={this.onSelectSpot}/>
         <SearchBar search={this.state.search} onChange={this.handleChange} spotResults={this.state.spotResults} userResults={this.state.userResults} mapCenter={this.state.user_location} onSelectSpot={this.onSelectSpot}/>
-        <Menu />
         {this.props.spot.selectedSpot &&
           <SelectedSpot user_location={this.state.user_location}/>
         }

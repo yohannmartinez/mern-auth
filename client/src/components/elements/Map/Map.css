@@ -43,7 +43,6 @@ a.mapboxgl-ctrl-logo{
 }
 
 .skateparkMarker,.streetMarker,.shopMarker{
-  
   background-size: contain;
   background-repeat: no-repeat;
   width: 3em;

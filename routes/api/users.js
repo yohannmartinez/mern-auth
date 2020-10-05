@@ -12,6 +12,7 @@ const validateChangePassword = require("../../validation/changePassword");
 
 // Load User model
 const User = require("../../models/User");
+const EmailCheckToken = require("../../models/EmailCheckToken");
 const { default: validator } = require("validator");
 
 // @route POST api/users/register
@@ -47,7 +48,17 @@ router.post("/register", (req, res) => {
               newUser.password = hash;
               newUser
                 .save()
-                .then(user => res.json(user))
+                .then(user => {
+                  const emailCheckToken = new EmailCheckToken({
+                    user_id: user._id,
+                    user_email: user.email,
+                    token: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+                  })
+                  emailCheckToken.save().then(token => {
+                    Mails.registerEmail(user.email, token.token);
+                    res.status(200).json(user)
+                  })
+                })
                 .catch(err => console.log(err));
             });
           });
@@ -139,7 +150,7 @@ router.get('/getById', (req, res) => {
 // @desc update user with user_id
 // @access Public
 router.post('/updateUser', (req, res) => {
-  User.findOneAndUpdate({ _id: req.body.user_id }, req.body.user,{new:true}, function (err, user) {
+  User.findOneAndUpdate({ _id: req.body.user_id }, req.body.user, { new: true }, function (err, user) {
     if (user) {
       res.status(200).send({ user: user })
     } else {
@@ -252,11 +263,11 @@ router.post('/changePassword', (req, res) => {
               bcrypt.hash(req.body.newPassword, salt, (err, hash) => {
                 if (err) throw err;
                 User.findByIdAndUpdate({ _id: req.body.user_id }, { password: hash }, (err, user) => {
-                  if(err) {
-                    return res.status(400).send({err})
+                  if (err) {
+                    return res.status(400).send({ err })
                   } else {
                     Mails.changePasswordMail(req.body.email)
-                    return res.status(200).send({user : user})
+                    return res.status(200).send({ user: user })
                   }
                 })
               });

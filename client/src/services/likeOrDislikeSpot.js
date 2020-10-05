@@ -1,9 +1,20 @@
-import { updateSpot } from "../services/spot"
-import { updateUser } from "../services/user"
+import { updateSpot } from "./spot"
+import { updateUser } from "./user"
+import { createNotification } from "./notifications"
 
 export const likeOrDislikeSpot = async (likeStatus, spotTargeted, userTargeted) => {
     let user = userTargeted;
     let spot = spotTargeted;
+    let notification = {
+        targeted_user_id: spot.added_by,
+        transmitter_user_id: user._id,
+        attachment: {
+            spot_id : spot._id,
+            spot_name: spot.name,
+        },
+        libelle: "like/dislike",
+        content: `ainsi que ${spot.liked_by.length + spot.disliked_by.length} personnes ont like/dislike votre spot`,
+    };
     if (likeStatus === "like" && !user.liked_spots.includes(spot._id)) {
         // add like and remove dislike if exist
         let remove_dislike_spot = spot.disliked_by.filter(dislike => dislike !== user._id);
@@ -42,6 +53,8 @@ export const likeOrDislikeSpot = async (likeStatus, spotTargeted, userTargeted) 
         spot = spotResponse.data.spot;
         user = userResponse.data.user;
     }
+
+    let notificationResponse = await createNotification(notification);
 
     return { spot: spot, user: user }
 }

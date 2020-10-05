@@ -17,21 +17,21 @@ const ThirdStep = (props) => {
             <p className="thirdStep__title">Quel Type de spot est-ce ?</p>
             <div className="thirdStep__answersContainer">
                 <div className="thirdStep__answerCircle" onClick={()=>{props.changeIndex("type",0)}}>
-                    <img src={Skatepark} className="thirdStep__answerIcon" />
+                    <img src={Skatepark} className="thirdStep__answerIcon colorToFilterBase" />
                     <p className="thirdStep__answerLabel" style={{
                         backgroundColor: props.values.type === 0 ? variables.baseColor : "white",
                         color: props.values.type === 0 ? "white" : variables.baseColor,
                     }}>SkatePark</p>
                 </div>
                 <div className="thirdStep__answerCircle" onClick={()=>{props.changeIndex("type",1)}}>
-                    <img src={Street} className="thirdStep__answerIcon" />
+                    <img src={Street} className="thirdStep__answerIcon colorToFilterBase" />
                     <p className="thirdStep__answerLabel" style={{
                         backgroundColor: props.values.type === 1 ? variables.baseColor : "white",
                         color: props.values.type === 1 ? "white" : variables.baseColor,
                     }} >Street</p>
                 </div>
                 <div className="thirdStep__answerCircle" onClick={()=>{props.changeIndex("type",2)}}>
-                    <img src={Dollar} className="thirdStep__answerIcon" />
+                    <img src={Dollar} className="thirdStep__answerIcon colorToFilterBase" />
                     <p className="thirdStep__answerLabel" style={{
                         backgroundColor: props.values.type === 2 ? variables.baseColor : "white",
                         color: props.values.type === 2 ? "white" : variables.baseColor,
@@ -42,14 +42,14 @@ const ThirdStep = (props) => {
             <p className="thirdStep__title">Le spot est-il couvert ?</p>
             <div className="thirdStep__answersContainer">
                 <div className="thirdStep__answerCircle" onClick={()=>{props.changeIndex("isIndoor",true)}}>
-                    <img src={Indoor} className="thirdStep__answerIcon" />
+                    <img src={Indoor} className="thirdStep__answerIcon colorToFilterBase" />
                     <p className="thirdStep__answerLabel" style={{
                         backgroundColor: props.values.isIndoor ? variables.baseColor : "white",
                         color: props.values.isIndoor ? "white" : variables.baseColor,
                     }}>Couvert</p>
                 </div>
                 <div className="thirdStep__answerCircle" onClick={()=>{props.changeIndex("isIndoor",false)}}>
-                    <img src={Outdoor} className="thirdStep__answerIcon" />
+                    <img src={Outdoor} className="thirdStep__answerIcon colorToFilterBase" />
                     <p className="thirdStep__answerLabel" style={{
                         backgroundColor: !props.values.isIndoor ? variables.baseColor : "white",
                         color: !props.values.isIndoor ? "white" : variables.baseColor,

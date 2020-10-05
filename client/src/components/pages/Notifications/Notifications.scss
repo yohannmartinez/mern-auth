@@ -1,0 +1,79 @@
+@import '../../../utils/base.scss';
+
+.notifications {
+    &__globalContainer {
+        padding-top: 5.5em;
+
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    &__container {
+        margin: 2em;
+        max-width:50em;
+        width:100%;
+    }
+
+    &__title {
+        background-color: white;
+        padding: 1em 0;
+        font-weight: 800;
+        font-size: 1.8em;
+    }
+
+    &__notification {
+        padding: 1.5em 1.5em 1.5em 2em;
+        display: flex;
+        justify-content: space-between;
+        border-radius: 0.5em;
+        align-items: center;
+        box-shadow: 0 10px 40px rgba(113, 113, 113, 0.4);
+        margin-bottom: 2em;
+        cursor: pointer;
+        position: relative;
+    }
+
+    &__newNotif {
+        position: absolute;
+        height: 0.5em;
+        width: 0.5em;
+        border-radius: 50%;
+        background-color: $pink;
+        left: 1em
+    }
+
+    &__transmitterAvatar {
+        width: 3em;
+        height: 3em;
+        background-size: contain;
+        background-position: center;
+        border-radius: 50%;
+    }
+
+    &__content {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 0 2em 0 1em;
+    }
+
+    &__transmitterName {
+        font-weight: 700;
+        font-size: 1.3em;
+    }
+
+    &__date {
+        font-weight: 700;
+        color:rgb(154, 154, 154)
+    }
+
+    &__noNotification{
+        color:white;
+        font-weight: 700;
+        background-color: $green;
+        padding:1em 1em;
+        border-radius: 0.5em;
+    }
+}

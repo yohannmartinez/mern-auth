@@ -1,15 +1,22 @@
 import React from "react"
 import { connect } from "react-redux"
+import StarRatings from 'react-star-ratings';
+import variables from "../../../utils/base.scss"
 
 import { getSpotById, updateSpot } from "../../../services/spot"
-import { getUserById, updateUser} from "../../../services/user"
+import { getUserById, updateUser } from "../../../services/user"
+import { getTimeElapsed } from "../../../services/getTimeElapsed"
 import { setSelectedSpot } from "../../../actions/spotActions"
 import { likeOrDislikeSpot } from "../../../services/likeOrDislikeSpot"
+import AddReviewSpot from "./AddReviewSpot/AddReviewSpot"
 import Map from "../../elements/Map/Map"
 import Like from "../../../assets/like.svg"
 import Dislike from "../../../assets/dislike.svg"
+import ValidIcon from "../../../assets/valid.svg"
+import ReviewIcon from "../../../assets/review.svg"
 
 import './Spot.scss'
+import Navbar from "../../elements/Navbar/Navbar"
 
 class Spot extends React.Component {
     constructor(props) {
@@ -19,53 +26,58 @@ class Spot extends React.Component {
             spotCreator: null,
             userAuth: null,
 
-            review:{
-                title:"",
-                content:"",
-            }
+            addReview: false,
+            reviewUsers: []
         }
         this.LikeOrDislikeSpot = this.LikeOrDislikeSpot.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.sendReview = this.sendReview.bind(this)
+        this.onChangeAddReview = this.onChangeAddReview.bind(this)
     }
 
     async componentDidMount() {
+        console.log("rerender")
         let spot_id = window.location.pathname.split('/')[2].replace("%20", "");
         let spotResponse = await getSpotById(spot_id);
         let creatorResponse = await getUserById(spotResponse.data.spot[0].added_by)
         let userAuth = await getUserById(this.props.auth.user._id)
-
-        this.setState({ spot: spotResponse.data.spot[0], spotCreator: creatorResponse.data.user, userAuth: userAuth.data.user })
+        let reviewsUsers = await Promise.all(spotResponse.data.spot[0].reviews.map(review => getUserById(review.user_id)))
+        reviewsUsers.map((reviewUser, index) => reviewsUsers[index] = reviewUser.data.user)
+        this.setState({ spot: spotResponse.data.spot[0], spotCreator: creatorResponse.data.user, userAuth: userAuth.data.user, reviewUsers: reviewsUsers })
     }
 
     async LikeOrDislikeSpot(likeStatus) {
-        let response = await likeOrDislikeSpot(likeStatus, this.state.spot, this.state.userAuth);
-        this.setState({ spot: response.spot, userAuth: response.user })
+        if (!this.props.auth.isAuthenticated) {
+            window.location.href = "/login"
+        } else {
+            let response = await likeOrDislikeSpot(likeStatus, this.state.spot, this.state.userAuth);
+            this.setState({ spot: response.spot, userAuth: response.user })
+        }
+
     }
 
     onChange(e) {
         let review = this.state.review;
         review[e.target.name] = e.target.value;
-        this.setState({review : review},()=>{console.log(this.state)})
+        this.setState({ review: review }, () => { console.log(this.state) })
     }
 
-    async sendReview(e) {
-        e.preventDefault()
-        let addReviewUser = this.state.userAuth;
-        let addReviewSpot = this.state.spot;
-        addReviewUser.reviews.push({spot_id : this.state.spot._id, title : this.state.review.title, content: this.state.review.content});
-        addReviewSpot.reviews.push({user_id : this.state.userAuth._id, title : this.state.review.title, content: this.state.review.content});
-        let userResponse = await updateUser(addReviewUser, this.state.userAuth._id);
-        let spotResponse = await updateSpot(addReviewSpot, this.state.spot._id);
-        this.setState({userAuth : userResponse.data.user, spot : spotResponse.data.spot})
+    onChangeAddReview(userAuth, spot) {
+        let reviewUsers = this.state.reviewUsers;
+        reviewUsers.push(userAuth)
+        console.log(reviewUsers)
+        this.setState({ reviewUsers:reviewUsers, userAuth: userAuth, spot: spot,  })
     }
+
+
 
     render() {
+        console.log("render again")
         return (
             <div className="spot__globalContainer">
-                {this.state.spot && this.state.userAuth &&
+                <Navbar />
+                {this.state.spot &&
                     <div className="spot__contentContainer" onClick={() => {
-                        console.log(this.state.spot)
+                        console.log(this.state)
                     }}>
                         <div className="spot__leftContainer">
                             <div className="spot__mapContainer">
@@ -78,8 +90,8 @@ class Spot extends React.Component {
                                     window.location.href = "/user/" + this.state.spot.added_by
                                 }}>{this.state.spotCreator.username}</b></p>
                                 <div className="spot__flexContainer">
-                                    <button className="spot__likeButton" onClick={() => { this.LikeOrDislikeSpot('like') }} style={{ filter: this.state.spot.liked_by.includes(this.state.userAuth._id) ? "invert(11%) sepia(11%) saturate(2979%) hue-rotate(169deg) brightness(95%) contrast(96%)" : "invert(73%) sepia(3%) saturate(4%) hue-rotate(332deg) brightness(95%) contrast(84%)" }}><img src={Like} className="spot__likeButton__icon" /> {this.state.spot.liked_by.length}</button>
-                                    <button className="spot__likeButton" onClick={() => { this.LikeOrDislikeSpot('dislike') }} style={{ filter: this.state.spot.disliked_by.includes(this.state.userAuth._id) ? "invert(11%) sepia(11%) saturate(2979%) hue-rotate(169deg) brightness(95%) contrast(96%)" : "invert(73%) sepia(3%) saturate(4%) hue-rotate(332deg) brightness(95%) contrast(84%)" }}><img src={Dislike} className="spot__likeButton__icon" /> {this.state.spot.disliked_by.length}</button>
+                                    <button className="spot__likeButton" onClick={() => { this.LikeOrDislikeSpot('like') }} style={{ filter: this.state.userAuth && this.state.spot.liked_by.includes(this.state.userAuth._id) ? "invert(11%) sepia(11%) saturate(2979%) hue-rotate(169deg) brightness(95%) contrast(96%)" : "invert(73%) sepia(3%) saturate(4%) hue-rotate(332deg) brightness(95%) contrast(84%)" }}><img src={Like} className="spot__likeButton__icon" /> {this.state.spot.liked_by.length}</button>
+                                    <button className="spot__likeButton" onClick={() => { this.LikeOrDislikeSpot('dislike') }} style={{ filter: this.state.userAuth && this.state.spot.disliked_by.includes(this.state.userAuth._id) ? "invert(11%) sepia(11%) saturate(2979%) hue-rotate(169deg) brightness(95%) contrast(96%)" : "invert(73%) sepia(3%) saturate(4%) hue-rotate(332deg) brightness(95%) contrast(84%)" }}><img src={Dislike} className="spot__likeButton__icon" /> {this.state.spot.disliked_by.length}</button>
                                 </div>
                             </div>
                             <div className="spot__descriptionContainer">
@@ -87,20 +99,42 @@ class Spot extends React.Component {
                                 <p>{this.state.spot.description}</p>
                             </div>
                             <div className="spot__reviewsContainer">
-                                <div>
-                                    <h1>Rediger un avis</h1>
-                                    <input name="title" value={this.state.review.title} onChange={this.onChange} placeholder="titre"/>
-                                    <input name="content" value={this.state.review.content} onChange={this.onChange} placeholder="votre avis..."/>
-                                    <button onClick={this.sendReview}>envoyer avis</button>
-                                </div>
-                                <h1>Avis({this.state.spot.reviews.length})</h1>
-                                <div>
-                                    {this.state.spot.reviews.map((review)=>(
-                                        <div>
-                                            {review.user} - {review.review}
+
+                                <h3 className="spot__subTitle">Avis ({this.state.spot.reviews.length})</h3>
+                                {this.state.spot.reviews.filter(review => review.user_id === this.state.userAuth._id).length === 0 ?
+                                    <div className="spot__reviewNotAdded">
+                                        <img src={ReviewIcon} className="spot__reviewCheckIcon" style={{ filter: "invert(100%)" }} />
+                                        <span className="spot__reviewCheckText">Votre avis compte, dites-nous ce que vous pensez !</span>
+                                        <button className="spot__reviewNotAdded__button" onClick={() => { this.setState({ addReview: true }) }}>Laisser un avis</button>
+                                    </div>
+                                    :
+                                    <div className="spot__reviewAdded">
+                                        <img src={ValidIcon} className="spot__reviewCheckIcon" />
+                                        <span className="spot__reviewCheckText">Merci d'avoir laissé votre avis !</span>
+                                        <button className="spot__reviewAdded__button" onClick={() => { this.setState({ addReview: true }) }}>Modifier</button>
+                                    </div>
+                                }
+                                {this.state.addReview === true &&
+                                    <AddReviewSpot userAuth={this.state.userAuth} spot={this.state.spot} onChangeAddReview={this.onChangeAddReview} closeAddReview={() => { this.setState({ addReview: false }) }} />
+                                }
+
+                                {this.state.spot.reviews.sort((a, b) => { return Number(b.timestamp) - Number(a.timestamp) }).map((review, index) => (
+                                    <div className="spot__reviewContainer">
+                                        <div className="spot__reviewEmitterContainer">
+                                            <div className="spot__reviewEmitterAvatar" style={{ backgroundImage:`url('${this.state.reviewUsers[index].avatar}')` }}></div>
+                                            <span className="spot__reviewEmitterUsername">{this.state.reviewUsers[index].username} </span>
+                                            <span className="spot__reviewEmitterDate">il y a {getTimeElapsed(Number(review.timestamp))}</span>
                                         </div>
-                                    ))}
-                                </div>
+                                        <StarRatings
+                                            rating={review.rate}
+                                            starRatedColor={variables.baseColor2}
+                                            numberOfStars={5}
+                                            starDimension="15px"
+                                            starSpacing="5px"
+                                        />
+                                        <span className="spot__reviewContent">{review.content}</span>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                         <div className="spot__rightContainer">

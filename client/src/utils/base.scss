@@ -6,10 +6,13 @@ $base-color3:#949494;
 $blue:#BED3FF;
 $green:#43B581;
 $pink:#E7366A;
+$light-blue:#72E6DB;
 
 :export{
     baseColor: $primary-color;
     baseColor2: $secondary-color;
+
+    pink: $pink;
 }
 
 .bigTitle{
@@ -50,6 +53,7 @@ $pink:#E7366A;
     display: flex;
     flex-direction: column;
     background-color: transparent;
+    width:100%;
 }
 
 .inputAuthContainer{

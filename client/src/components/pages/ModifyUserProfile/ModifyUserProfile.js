@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import Input from "../../elements/Input/Input"
-import { changeEmail, changePassword } from "../../../services/user"
+import { changeEmail, changePassword, getUserById } from "../../../services/user"
 import { logoutUser } from "../../../actions/authActions"
 
 import './ModifyUserProfile.scss'
@@ -17,6 +17,8 @@ class ModifyUserProfile extends React.Component {
                 editPasswordStatus: false,
             },
 
+            userAuth: null,
+
             email: "",
             confirmEmail: "",
             old_password: "",
@@ -31,6 +33,11 @@ class ModifyUserProfile extends React.Component {
         this.changeStatus = this.changeStatus.bind(this);
         this.changeEmail = this.changeEmail.bind(this);
         this.changePassword = this.changePassword.bind(this);
+    }
+
+    async componentDidMount() {
+        let userResponse = await getUserById(this.props.auth.user._id);
+        this.setState({ userAuth: userResponse.data.user })
     }
 
     onChange(e) {
@@ -67,6 +74,7 @@ class ModifyUserProfile extends React.Component {
     }
 
     render() {
+        console.log(this.state)
         return (
             <div className="modifyUserProfile__container">
                 <div className="modifyUserProfile__categories">
@@ -80,6 +88,7 @@ class ModifyUserProfile extends React.Component {
                         <div>
                             <h1 className="modifyUserProfile__title">Adresse E-mail</h1>
                             <p><b>actuelle : </b> {this.props.auth.user.email}</p>
+                            <span>{this.state.userAuth && this.state.userAuth.email_checked === false ? "email pas vérifié" : "email vérifié"}</span>
                             <h2 className="modifyUserProfile__sub">Changer l'adresse e-mail</h2>
                             <Input tabIndex={"1"} label={"Nouvelle adresse e-mail"} value={this.state.email} name="email" onChange={this.onChange} />
                             {this.state.error && this.state.error.email && <p className="modifyUserProfile__error">{this.state.error.email}</p>}

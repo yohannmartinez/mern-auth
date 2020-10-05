@@ -1,5 +1,5 @@
 import axios from "axios"
-import setAuthToken from "../services/setAuthToken";
+import { createNotification } from "./notifications"
 
 
 export const getUserById = async (user_id) => {
@@ -13,8 +13,16 @@ export const updateUser = async (user, user_id) => {
 }
 
 export const followUser = async (user_id, user_followed_id) => {
-    const resp = await axios.post('/api/users/followUser', { user_id, user_followed_id });
-    return resp
+    const followResponse = await axios.post('/api/users/followUser', { user_id, user_followed_id });
+    let notification = {
+        targeted_user_id: user_followed_id,
+        transmitter_user_id: user_id,
+        attachment: {},
+        libelle: "follow",
+        content: "vous suit",
+    };
+    let notificationsResponse = await createNotification(notification);
+    return notificationsResponse
 }
 
 export const unfollowUser = async (user_id, user_followed_id) => {

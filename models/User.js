@@ -39,11 +39,6 @@ const UserSchema = new Schema({
     default:[],
     required: true,
   },
-  added_spots: {
-    type: Array,
-    default: [],
-    required: true,
-  },
   followers: {
     type: Array,
     default: [],

@@ -1,6 +1,8 @@
+@import '../../../../utils/base.scss';
+
 .addSpotSuccess{
     &__container{
-        background-color: #5DD167;
+        background-color: $green;
         width:100vw;
         min-height:100vh;
         display: flex;
@@ -20,11 +22,11 @@
     }
 
     &__button{
-        background-color: #24285B;
+        background-color: $primary-color;
         padding:1em 2em;
         border-radius: 0.3em;
         color:white;
-        font-size: 1em;
+        font-size: 1.2em;
         font-weight: bold;
         margin-top: 2em;
     }
@@ -36,8 +38,7 @@
     }
 
     &__closeIcon{
-        filter: invert(11%) sepia(60%) saturate(1723%) hue-rotate(216deg) brightness(99%) contrast(91%);
-        height:1.3em;
-        width:1.3em;
+        height:1.8em;
+        width:1.8em;
     }
 }

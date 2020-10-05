@@ -1,87 +1,187 @@
 @import '../../../utils/base.scss';
 
-.spot{
-    &__globalContainer{
+.spot {
+    &__globalContainer {
         display: flex;
         justify-content: center;
+        padding-top: 7em;
     }
 
 
-    &__contentContainer{
+    &__contentContainer {
         max-width: 1200px;
         // border:1px solid red;
-        width:100%;
-        padding:2em;
+        width: 100%;
+        padding: 2em;
         display: flex;
     }
 
-    &__leftContainer{
+    &__leftContainer {
         // border:1px solid blue;  
-        flex:2;
-        padding-right:2em;
+        flex: 2;
+        padding-right: 2em;
     }
-    
-    &__subTitle{
-        color:#14304b;
+
+    &__subTitle {
+        color: #14304b;
         font-weight: 700;
         font-size: 1.2em;
-        padding:1em 0;
+        padding: 1em 0;
     }
-    
-    &__mapContainer{
+
+    &__mapContainer {
         // border:1px solid yellow;
         overflow: hidden;
         border-radius: 0.7em;
         position: relative;
-        height:30em;
+        height: 30em;
     }
-    
-    &__flexContainer{
+
+    &__flexContainer {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
-    &__likeButton{
+    &__likeButton {
         display: inline-flex;
         align-items: center;
         font-weight: 600;
         font-size: 1.1em;
-        color:#000000;
-        margin-right:0.5em;
-        &__icon{
-            width:1.5em;
-            height:1.5em;
+        color: #000000;
+        margin-right: 0.5em;
+
+        &__icon {
+            width: 1.5em;
+            height: 1.5em;
             margin-right: 1em;
             margin-left: 2em;
         }
     }
 
-    &__spotName{
+    &__spotName {
         font-weight: 800;
         font-size: 2em;
-        margin:1em 0 ;
+        margin: 1em 0;
     }
 
-    &__descriptionContainer{
-        border-top: 1px solid rgb(213, 213, 213);
-        margin-top:2em;
+    &__descriptionContainer {
+        border-top: 1px solid rgb(237, 237, 237);
+        margin-top: 2em;
     }
 
-    &__reviewsContainer{
-        background-color: $primary-color;
-        margin-top:2em;
-        border-radius: 0.5em;
-        padding:1em;
+    &__reviewsContainer {
+        margin-top: 2em;
         display: flex;
-        justify-content: center;
-        color:white;
+        flex-direction: column;
+        justify-content: flex-start;
+        border-top: 1px solid rgb(234, 234, 234);
 
     }
 
-    &__rightContainer{
-        border:1px solid #14304b;
+    &__reviewAdded,
+    &__reviewNotAdded {
+        width: 100%;
+        border-radius: 0.5em;
+        padding: 1em;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 2em;
+    }
+
+    &__reviewAdded {
+        background-color: $green;
+
+        &__button {
+            background-color: white;
+            color: $green;
+            border-radius: 0.5em;
+            font-weight: 800;
+            font-size: 1.1em;
+            padding: 0.5em 1em;
+        }
+    }
+
+    &__reviewNotAdded {
+        background-color: $primary-color;
+        &__button {
+            background-color: white;
+            color: $primary-color;
+            border-radius: 0.3em;
+            font-weight: 800;
+            font-size: 1.1em;
+            padding: 0.5em 1em;
+        }
+    }
+
+    &__reviewCheckIcon {
+        width: 3em;
+        height: 3em;
+    }
+
+    &__reviewCheckText {
+        color: white;
+        font-weight: 700;
+        font-size: 1.1em;
+        flex-grow: 1;
+        margin: 0 1em;
+    }
+
+    &__reviewContainer{
+        padding: 1.5em 1.5em 1.5em 2em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-radius: 0.5em;
+        align-items: flex-start;
+        box-shadow: 0 10px 40px rgba(113, 113, 113, 0.4);
+        margin-bottom: 2em;
+        cursor: pointer;
         position: relative;
-        flex:1;
+    }
+
+    &__reviewEmitterAvatar{
+        border-radius: 50%;
+        width:3em;
+        height:3em;
+        background-size: contain;
+        background-position: center;
+    }
+
+
+    &__reviewEmitterContainer{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin:0 0 1.5em 0;
+        width:100%;
+    }
+
+    &__reviewEmitterUsername{
+        font-weight: 700;
+        color:$primary-color;
+        font-size: 1.3em;
+        margin-left: 1em;
+    }
+
+    &__reviewEmitterDate{
+        font-weight: 700;
+        color:rgb(183, 183, 183);
+        font-size: 1.1em;
+        flex-grow: 1;
+        text-align: right;
+    }
+
+    &__reviewContent{
+        font-weight: 700;
+        font-size: 1.1em;
+        margin-top: 0.5em;
+    }
+
+    &__rightContainer {
+        position: relative;
+        flex: 1;
     }
 }

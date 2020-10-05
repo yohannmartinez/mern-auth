@@ -8,6 +8,18 @@ var transporter = nodemailer.createTransport({
   }
 });
 
+function registerEmail(email, checkTokenEmail) {
+  transporter.sendMail({
+    to: email,
+    subject: "MiSpots - Mail confirmation compte",
+    html: `<div style="text-align:center">
+      
+      <a href="http://localhost:3000/mailConfirm/${checkTokenEmail}">Confirmer votre compte</a>
+      </div>`,
+
+  });
+}
+
 function changeEmailAddressMail(oldEmail) {
   transporter.sendMail({
     to: oldEmail,
@@ -34,5 +46,6 @@ function changePasswordMail(email) {
 
 module.exports = {
   changeEmailAddressMail,
-  changePasswordMail
+  changePasswordMail,
+  registerEmail,
 }

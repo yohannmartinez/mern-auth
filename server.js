@@ -5,6 +5,8 @@ const passport = require("passport");
 
 const users = require("./routes/api/users");
 const spots = require("./routes/api/spots");
+const notifications = require("./routes/api/notifications");
+const emailCheckTokens = require("./routes/api/emailCheckTokens");
 const s3 = require("./routes/api/s3");
 
 const app = express();
@@ -38,6 +40,8 @@ require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
 app.use("/api/spots", spots);
+app.use("/api/notifications", notifications);
+app.use("/api/emailCheckTokens", emailCheckTokens);
 app.use("/api/s3", s3);
 
 const port = process.env.PORT || 5000;

@@ -63,3 +63,9 @@ a.mapboxgl-ctrl-logo{
   background-image: url("../../../assets/markers/shopMarker.svg");
 
 }
+
+@media(max-width:800px) {
+  .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl{
+    display: none;
+  }
+}

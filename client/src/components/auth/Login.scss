@@ -1,54 +1,77 @@
 @import '../../utils/base.scss';
 
-.login{
-  &__container{
+.login {
+  &__container {
     display: flex;
-    min-height:100vh;
+     
+    min-height: 100vh;
   }
 
-  
 
-  &__containerLeft{
+
+  &__containerLeft {
     display: flex;
+     
     justify-content: space-between;
     flex-direction: column;
     padding: 3em 5em;
   }
 
-  &__logo{
-    width:7em;
-    padding-bottom:2em;
+  &__logo {
+    width: 7em;
+    padding-bottom: 2em;
     cursor: pointer;
   }
 
 
-  &__title{
+  &__title {
     font-size: 2.5em;
     font-weight: 700;
-    color:#949494;
-    padding:0.5em 0;
+    color: #949494;
+    padding: 0.5em 0;
+    line-height: 1.3em;
   }
 
-  &__text{
-    max-width:30em;
-    padding-bottom:1em;
+  &__text {
+    max-width: 30em;
+    padding-bottom: 1em;
   }
 
-  &__actionsContainer{
+  &__actionsContainer {
     display: flex;
+     
     flex-direction: row;
     align-items: center;
     padding-top: 1em;
     padding-bottom: 2em;
   }
 
-  &__policy{
-    color:$base-color3;
-    max-width:30em;
+  &__policy {
+    color: $base-color3;
+    max-width: 30em;
   }
 
-  &__rightContainer{
+  &__rightContainer {
     background-color: $secondary-color;
     flex-grow: 1;
+  }
+}
+
+@media(max-width:600px) {
+  .login {
+    &__containerLeft {
+      padding: 2em 1em;
+      flex: 1;
+    }
+
+    &__rightContainer {
+      display: none;
+    }
+
+    &__logo {
+      padding-bottom: 1em;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
   }
 }

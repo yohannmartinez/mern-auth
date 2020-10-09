@@ -74,6 +74,7 @@ class Login extends Component {
                   <div className="inputAuthFocus"></div>
                 </div>
               </div>
+              <span className="littleTextGrey" style={{textDecoration :"underline"}} onClick={()=>{window.location.href = "/forgotPassword"}}>J'ai oublié mon mot de passe</span>
               <div className="login__actionsContainer" >
                 <button className="buttonBlack" type="submit" >Connexion</button>
                 <button className="buttonWhite" onClick={() => { window.location.href = "/register" }}>S'inscrire</button>
@@ -84,7 +85,7 @@ class Login extends Component {
             En vous connectant, vous acceptez les <b>termes et conditions</b> & la <b>politique de confidentialité</b> de Spoots
           </div>
         </div>
-        <div className="login__rightContainer">right</div>
+        <div className="login__rightContainer"></div>
       </div>
     );
   }

@@ -1,61 +1,109 @@
 @import "../../../utils/base.scss";
 
-.navbar{
-    &__container{
+.navbar {
+    &__container {
         position: fixed;
         display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         justify-content: space-between;
         align-items: center;
-        top:0;
-        left:0;
-        height:5.5em;
-        border-bottom:1px solid rgb(225, 225, 225);
-        width:100%;
-        z-index:50;
+        top: 0;
+        left: 0;
+        height: 5.5em;
+        border-bottom: 1px solid rgb(225, 225, 225);
+        width: 100%;
+        z-index: 50;
         background-color: white;
     }
 
-    &__menuContainer,&__actionsContainer{
+    &__menuContainer,
+    &__actionsContainer {
         display: flex;
-        color:$primary-color;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        color: $primary-color;
         font-weight: 700;
         font-size: 1.1em;
-        padding:0 2em;
-        height:100%;
+        padding: 0 2em;
+        height: 100%;
         align-items: center;
         cursor: pointer;
     }
 
-    &__menuContainer{
+    &__menuContainer {
         border-right: 1px solid rgb(225, 225, 225);
 
     }
 
-    &__actionsContainer{
+    &__actionsContainer {
         border-left: 1px solid rgb(225, 225, 225);
     }
 
-    &__menuIcon{
-        width:1.5em;
+    &__menuIcon {
+        width: 1.5em;
         margin-right: 1em;
     }
 
-    &__logo{
-        height:60%;
+    &__logo {
+        height: 60%;
         position: absolute;
-        left:50%;
-        top:50%;
-        transform: translate(-50%,-50%);
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
         cursor: pointer;
     }
 
-    &__userIcon{
-        width:2em;
-        height:2em;
+    &__userIcon {
+        width: 2em;
+        height: 2em;
         border-radius: 50%;
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        margin-left:1em;
+        margin-left: 1em;
+    }
+}
+
+@media(min-width:700px) {
+    #notConnectedIcon {
+        display: none;
+    }
+}
+
+@media(max-width:500px) {
+    .navbar {
+
+        &__container {
+            height: 4em;
+        }
+
+        &__menuContainer {
+            border: none;
+        }
+
+        &__menuContainer {
+            padding-right: 0;
+        }
+
+        &__actionsContainer {
+            padding-left: 0;
+        }
+
+        &__menuText {
+            display: none;
+        }
+    }
+}
+
+@media(max-width:700px) {
+    .navbar {
+        &__actionsText {
+            display: none;
+        }
+
+        &__actionsContainer {
+            border: none
+        }
     }
 }

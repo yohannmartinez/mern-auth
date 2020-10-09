@@ -14,12 +14,15 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 
 import UsersProfile from "./components/pages/UsersProfile/UsersProfile"
+import ForgotPassword from "./components/pages/ForgotPassword/ForgotPassword"
 import ModifyUserProfile from "./components/pages/ModifyUserProfile/ModifyUserProfile";
 import Spot from "./components/pages/Spot/Spot"
 import AddSpot from "./components/pages/AddSpot/AddSpot"
 import AddSpotSuccess from "./components/pages/AddSpot/AddSpotSuccess/AddSpotSuccess"
 import Notifications from "./components/pages/Notifications/Notifications"
 import MailConfirm from "./components/pages/MailConfirm/MailConfirm"
+import Help from "./components/pages/Help/Help"
+import NotFound from "./components/pages/NotFound/NotFound"
 
 import Menu from "./components/elements/Menu/Menu"
 
@@ -68,17 +71,22 @@ class App extends Component {
         <Router>
           <div className="App">
             <Menu />
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/user/:id" component={UsersProfile} />
-            <Route exact path="/spot/:id" component={Spot} />
-            <Route exact path="/mailConfirm/:id" component={MailConfirm} />
             <Switch>
+
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/user/:id" component={UsersProfile} />
+              <Route exact path="/spot/:id" component={Spot} />
+              <Route exact path="/mailConfirm/:id" component={MailConfirm} />
+              <Route exact path="/forgotPassword" component={ForgotPassword} />
+              <Route exact path="/help" component={Help} />
               <PrivateRoute exact path="/addSpot" component={AddSpot} />
               <PrivateRoute exact path="/addSpotSuccess" component={AddSpotSuccess} />
               <PrivateRoute exact path="/editUser" component={ModifyUserProfile} />
               <PrivateRoute exact path="/notifications" component={Notifications} />
+              <Route path="*" component={NotFound} />
+
             </Switch>
           </div>
         </Router>

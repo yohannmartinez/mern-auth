@@ -57,7 +57,7 @@ class Register extends Component {
     return (
       <div className="register__container">
         <div className="register__containerLeft">
-          <img src={Logo} className="register__logo colorToFilterBase" onClick={()=>{window.location.href = "/"}}/>
+          <img src={Logo} className="register__logo colorToFilterBase" onClick={() => { window.location.href = "/" }} />
 
           <div className="register__formContainer">
             <h1 className="register__title">Bienvenue sur<b style={{ color: variables.baseColor, fontWeight: "900" }}> Spoots</b></h1>
@@ -89,7 +89,7 @@ class Register extends Component {
               </div>
               <div className="register__actionsContainer" >
                 <button className="buttonBlack" type="submit" >Inscription</button>
-                <button className="buttonWhite" onClick={() => { window.location.href = "/login" }}>Se connecter</button>
+                <button className="buttonWhite" onClick={() => { window.location.href = "/login" }}>Connexion</button>
               </div>
             </form>
           </div>
@@ -98,7 +98,7 @@ class Register extends Component {
             En vous connectant, vous acceptez les <b>termes et conditions</b> & la <b>politique de confidentialité</b> de Spoots
           </div>
         </div>
-        <div className="register__rightContainer">right</div>
+        <div className="register__rightContainer"></div>
       </div>
     );
   }

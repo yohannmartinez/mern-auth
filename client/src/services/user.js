@@ -53,3 +53,13 @@ export const followOrUnfollow = (user_following, user_followed) => {
     }
     return user
 }
+
+export const checkIfEmail = async (email) => {
+    const resp = await axios.get('/api/users/checkIfEmail', {params : {email : email}});
+    return resp
+}
+
+export const setNewPassword = async ( user_id,new_password, user_email) => {
+    const resp = await axios.post('/api/users/setNewPassword', { user_id: user_id, new_password: new_password, email:user_email })
+    return resp
+}

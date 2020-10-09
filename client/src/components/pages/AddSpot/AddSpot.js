@@ -60,19 +60,22 @@ class AddSpot extends React.Component {
     }
 
     getcenter(center) {
+        console.log("changing center 1")
         let infos = this.state.spot_infos;
         infos.latitude = center.lat;
         infos.longitude = center.lng;
-        this.setState({ spot_infos: infos })
+        this.setState({ spot_infos: infos, errorPosition :null })
     }
 
     changeIndex(modifiedState, index) {
+        console.log("changing center 3")
         let infos = this.state.spot_infos;
         infos[modifiedState] = index;
         this.setState({ spot_infos: infos })
     }
 
     handleChangeSpotInfos(e) {
+        console.log("changing center 2")
         let infos = this.state.spot_infos;
         infos[e.target.name] = e.target.value;
         this.setState({ spot_infos: infos, error:null })

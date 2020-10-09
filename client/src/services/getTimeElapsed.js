@@ -4,9 +4,10 @@ export const getTimeElapsed = (datetime) => {
         days = milisec_diff / 3600e3 / 24 | 0,
         hours = diff.getUTCHours(),
         respvalue = '';
+        console.log(days)
     if (days >= 7) {
         respvalue += Math.floor(days / 7) + " semaines"
-    } else if (days > 0 && days === 6)
+    } else if (days > 0 && days < 7)
         respvalue += days + "j";
     else if (days === 0 && hours > 0)
         respvalue += hours + "h";

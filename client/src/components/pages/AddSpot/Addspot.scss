@@ -1,158 +1,218 @@
 @import '../../../utils/base.scss';
 
-.addSpot{
-    &__container{
-        padding:5.5em 0 0 0 ;
-        display:flex; 
-        min-height:100vh;
-        width:100%;
-    }
-    
-    &__leftPart, &__mapContainer{
+.addSpot {
+    &__container {
+        padding: 5.5em 0 0 0;
         display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        min-height: 100vh;
+        width: 100%;
+    }
+
+    &__leftPart,
+    &__mapContainer {
+        display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         position: relative;
     }
-    
-    &__leftPart::after{
-        content:"";
+
+    &__leftPart::after {
+        content: "";
         position: absolute;
-        width:2em;
-        height:2em;
+        width: 2em;
+        height: 2em;
         background-color: white;
         z-index: -1;
-        top:50vh;
-        right:0;
-        transform: translate(50%,-100%) rotate(45deg);
+        top: 50vh;
+        right: 0;
+        transform: translate(50%, -100%) rotate(45deg);
 
     }
-    
-    &__leftPart{
+
+    &__leftPart {
         background-color: white;
 
         z-index: 15;
-        box-shadow: 0 0 40px rgba(29, 29, 29 ,0.3);
+        box-shadow: 0 0 40px rgba(29, 29, 29, 0.3);
         justify-content: center;
         flex-direction: column;
         align-items: flex-start;
         justify-content: space-between;
-        width:40vw
+        width: 40vw
     }
 
-    &__contentContainer{
+    &__contentContainer {
         flex-grow: 1;
-        padding:1em 3em;
+        padding: 1em 3em;
         display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         justify-content: center;
         align-items: center;
         flex-direction: column;
         width: 100%;
     }
 
-    &__mapContainer{
+    &__mapContainer {
         overflow: hidden;
         position: fixed;
         z-index: 10;
-        bottom:0;
-        right:0;
-        height:calc(100vh - 5.5em);
-        width:60vw
+        bottom: 0;
+        right: 0;
+        height: calc(100vh - 5.5em);
+        width: 60vw
     }
 
 
 
-    &__mapContainerOverlay{
+    &__mapContainerOverlay {
         position: fixed;
         z-index: 11;
-        bottom:0;
-        right:0;
-        height:calc(100vh - 5.5em);
-        width:60vw;
-        background-color: rgba(0,0,0,0.4);
+        bottom: 0;
+        right: 0;
+        height: calc(100vh - 5.5em);
+        width: 60vw;
+        background-color: rgba(0, 0, 0, 0.4);
     }
 
-    &__title{
+    &__title {
         font-weight: 900;
-        margin:1em 0;
+        margin: 1em 0;
         font-size: 2.5em;
-    color:$primary-color;
-
+        color: $primary-color;
+        line-height: 1.2em;
+        text-align: center;
     }
 
-    &__stepContainer{
-        display:flex;
+    &__stepContainer {
+        display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width:100%;
+        width: 100%;
     }
-    
-    &__stepDescription{
+
+    &__stepDescription {
         margin-bottom: 1em;
         font-size: 1.1em;
         text-align: center;
     }
 
-    
 
-    &__mapContainer::after{
-        content:"";
+
+    &__mapContainer::after {
+        content: "";
         position: absolute;
-        top:50%;
-        left:50%;
-        transform: translate(-50%,-100%);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -100%);
         background-image: url('../../../assets/pin.svg');
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center bottom;
-        height:4em;
-        width:2em;
+        height: 4em;
+        width: 2em;
     }
 
 
-    &__error{
-        color:rgb(191, 39, 39);
+    &__error {
+        color: rgb(191, 39, 39);
         font-weight: 700;
     }
 
-    &__stepButtonsContainer{
+    &__stepButtonsContainer {
         display: flex;
-        width:100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        width: 100%;
         flex-direction: column;
         align-items: center;
     }
 
-    &__nextStepButton,&__previousStepButton,&__addSpotButton{
+    &__nextStepButton,
+    &__previousStepButton,
+    &__addSpotButton {
         font-size: 1.2em;
         font-weight: 800;
-        width:100%;
+        width: 100%;
         text-align: center;
-        padding:1em 0;
+        padding: 1em 0;
 
     }
 
-    &__nextStepButton,&__addSpotButton{
-        background-color:$primary-color;
-        color:white;
+    &__nextStepButton,
+    &__addSpotButton {
+        background-color: $primary-color;
+        color: white;
     }
 
-    &__previousStepButton{
-        background-color:#e6e6e6;
-        color:$primary-color;
+    &__previousStepButton {
+        background-color: #e6e6e6;
+        color: $primary-color;
     }
 
-    &__input{
-        border:none;
+    &__input {
+        border: none;
         font-weight: bold;
-        color:$primary-color;
+        color: $primary-color;
         font-size: 0.9em;
-        padding:0 0.7em;
+        padding: 0 0.7em;
         position: relative;
         border-bottom: 1px solid #1e4266a8;
         transition: 0.5s;
     }
 
-    &__input:focus{
+    &__input:focus {
         border-bottom: 1px solid $primary-color;
     }
 
+}
+
+@media(max-width:750px) {
+    .addSpot {
+        &__mapContainer {
+            width: 50vw;
+        }
+
+        &__leftPart {
+            width: 50vw;
+        }
+    }
+}
+
+@media(max-width:650px) {
+    .addSpot {
+
+        &__container {
+            flex-direction: column-reverse;
+            justify-content: flex-end;
+            padding-top: 4em
+        }
+
+        &__mapContainer {
+            width: 100%;
+            position: relative;
+            height: 20em
+        }
+
+        &__leftPart::after {
+            display: none;
+    
+        }
+
+        &__mapContainerOverlay {
+            width: 100%;
+            height:100%;
+            position:absolute;
+        }
+
+        &__leftPart {
+            width: 100%;
+            flex-grow: 1;
+        }
+    }
 }

@@ -63,9 +63,11 @@ router.get("/getAddedSpotsByUserId", (req, res) => {
 router.get("/getSpotById", (req, res) => {
   Spot.find({_id : req.query.spot_id},function(err,spot){
     if(err) {
-      res.status(400).send(err)
-    } else {
+      res.status(200).send({ failure : err })
+    } else if(spot){
       res.status(200).send({ spot : spot })
+    }else if(!spot) {
+      res.status(200).send({ failure : null })
     }
   })
 });

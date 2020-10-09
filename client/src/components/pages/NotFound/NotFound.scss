@@ -1,0 +1,27 @@
+@import '../../../utils/base.scss';
+
+.NotFound {
+    &__NotFoundContainer {
+        display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding-bottom: 5em;
+    }
+
+    &__NotFoundImage {
+        width: 30em;
+    }
+
+    &__NotFoundText {
+        font-weight: 800;
+        color: $primary-color;
+        font-size: 1.5em;
+        margin-top: 2em;
+        padding: 0 2em;
+        text-align: center;
+    }
+}

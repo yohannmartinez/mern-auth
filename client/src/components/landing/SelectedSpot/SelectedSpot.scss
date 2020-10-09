@@ -1,60 +1,83 @@
 @import '../../../utils/base.scss';
 
-.selectedSpot{
-    &__container{
+.selectedSpot {
+    &__container {
         position: absolute;
         width: 25em;
         background-color: white;
-        top:6em;
-        left:2em;
+        top: 6em;
+        left: 2em;
         border-radius: 0.3em;
-        padding:1em;
-        box-shadow: 0 0 20px 3px rgba(0,0,0,0.2);
+        padding: 1em;
+        box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.2);
 
     }
 
-    &__title{
+    &__title {
         font-weight: 900;
         font-size: 1.6em;
         margin: 0.3em 0 1em 0;
     }
 
-    &__element{
+    &__element {
         font-size: 0.9em;
-        margin:1em 0;
-        display:flex;
+        margin: 1em 0;
+        display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         align-items: center;
         font-weight: bold;
     }
 
-    &__icon{
-        height:1.3em;
-        width:1.3em;
+    &__icon {
+        height: 1.3em;
+        width: 1.3em;
         margin-right: 1em;
     }
 
-    &__button{
+    &__button {
         background-color: $primary-color;
-        color:white;
+        color: white;
         font-weight: bold;
         font-size: 1em;
-        height:3em;
-        width:100%;
-        position:absolute;
-        bottom:0;
-        left:0;
+        height: 3em;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
         transform: translateY(calc(100% + 1em));
-        padding:0 1em;
+        padding: 0 1em;
         border-radius: 0.3em;
         display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
     }
 
-    &__buttonIcon{
-        height:1.5em;
-        width:2em;
-        filter:invert(100%)
+    &__buttonIcon {
+        height: 1.5em;
+        width: 2em;
+        filter: invert(100%)
+    }
+}
+
+@media(max-width:890px) {
+    .selectedSpot {
+        &__container {
+            bottom: 5em;
+            top: unset
+        }
+    }
+}
+
+@media(max-width:500px) {
+    .selectedSpot {
+        &__container {
+            left: 0;
+            width: calc(100% - 2em);
+            margin: 0 1em;
+        }
     }
 }

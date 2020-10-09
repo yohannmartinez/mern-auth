@@ -1,0 +1,100 @@
+@import '../../../utils/base.scss';
+
+.Follow {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 149;
+    display: flex;
+     
+    align-items: center;
+    justify-content: center;
+
+    &__container {
+        background-color: white;
+        border-radius: 0.5em;
+        min-width: 350px;
+        padding-bottom: 2em;
+    }
+
+    &__title {
+        font-weight: 800;
+        font-size: 1.3em;
+        color: $primary-color;
+        padding: 1em;
+    }
+
+    &__followsContainer {
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+        max-height: 20em
+    }
+
+    &__followsContainer::-webkit-scrollbar {
+        width: 0px
+    }
+
+    &__followContainer {
+        display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 5em;
+        padding: 0 1em;
+    }
+
+    &__followInfosContainer {
+        display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__followAvatar {
+        height: 3em;
+        width: 3em;
+        border-radius: 50%;
+        background-size: contain;
+        background-position: center;
+    }
+
+    &__followUsername {
+        margin-left: 0.5em;
+        font-weight: 700;
+        color: $primary-color;
+        font-size: 1.1em;
+    }
+
+    &__followButton {
+        background-color: $light-blue;
+        font-weight: 800;
+        font-size: 1.1em;
+        color: white;
+        border-radius: 0.3em;
+        padding: 0.3em 1em;
+        height: fit-content;
+        margin-left: 1em;
+    }
+
+    &__baseContainer {
+        display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    &__closeIcon {
+        width: 1em;
+        height: 1em;
+        margin: 1em 1em 1em 1em;
+    }
+}

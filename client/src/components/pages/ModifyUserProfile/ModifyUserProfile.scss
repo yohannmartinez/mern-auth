@@ -1,72 +1,77 @@
 @import '../../../utils/base.scss';
 
-.modifyUserProfile{
+.modifyUserProfile {
 
-    &__container{
-        display:flex;
-        width:100vw;
-        min-height:100vh;
+    &__container {
+        display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        width: 100vw;
+        min-height: 100vh;
         flex-direction: row;
-        
-        
+
+
     }
 
-    &__categories{
-        display:flex;
+    &__categories {
+        display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         flex-direction: column;
-        width:15em;
+        width: 15em;
         border-right: 0.5px solid rgb(211, 211, 211);
     }
 
-    &__tab,&__back{
+    &__tab,
+    &__back {
         text-align: center;
-        width:100%;
-        padding:1em 0;
+        width: 100%;
+        padding: 1em 0;
         font-weight: bold;
     }
 
-    &__tab{
+    &__tab {
         border-bottom: 0.5px solid rgb(211, 211, 211);
-        color:$primary-color;
+        color: $primary-color;
     }
 
-    &__back{
-        background-color:$primary-color;
-        color:white;
+    &__back {
+        background-color: $primary-color;
+        color: white;
     }
 
-    &__edit{
+    &__edit {
         flex-grow: 1;
-        padding:3em;
+        padding: 3em;
         max-width: 30em;
     }
 
-    &__title{
-        font-weight:800;
+    &__title {
+        font-weight: 800;
         font-size: 2em;
-        color:$primary-color;
+        color: $primary-color;
         margin-bottom: 1em;
     }
 
-    &__sub{
-        font-weight:600;
+    &__sub {
+        font-weight: 600;
         font-size: 1.3em;
-        color:$primary-color;
-        margin:1em 0;
+        color: $primary-color;
+        margin: 1em 0;
     }
 
-    &__error{
-        color:red;
+    &__error {
+        color: red;
         margin-bottom: 1em;
     }
 
-    &__button{
+    &__button {
         border-radius: 0.3em;
         font-size: 1em;
         font-weight: bold;
         text-align: center;
-        padding:0.5em 1em;
-        background-color:$primary-color;
-        color:white;
+        padding: 0.5em 1em;
+        background-color: $primary-color;
+        color: white;
     }
 }

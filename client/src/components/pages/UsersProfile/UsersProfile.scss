@@ -4,11 +4,17 @@
 
     &__globalContainer {
         display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         padding: 5.5em 0 0 0;
+        justify-content: center;
+
     }
 
     &__flexContainer {
         display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         flex-direction: row;
         align-items: center;
         margin-bottom: 1em;
@@ -31,10 +37,13 @@
         background-image: url('../../../assets/profile/background.png');
         background-size: contain;
         background-position: center;
+        position: relative;
     }
 
     &__bandeauContainer {
         display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
@@ -43,6 +52,8 @@
     &__avatarContainer {
         flex: 1;
         display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         justify-content: center;
     }
 
@@ -62,6 +73,8 @@
     &__infosContainer {
         flex-grow: 1;
         display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         flex-direction: column;
         flex: 2;
     }
@@ -128,6 +141,8 @@
         border-radius: 0.5em;
         padding: 0.6em;
         display: inline-flex;
+        display: -webkit-inline-box;
+        display: -ms-inline-flexbox;
         flex-direction: row;
         justify-content: center;
         align-items: center;
@@ -165,6 +180,8 @@
 
     &__rightElementFlex {
         display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
@@ -174,10 +191,13 @@
         color: rgb(165, 165, 165);
         font-weight: 600;
         font-size: 1em;
+        width: 11em;
+        min-width: 11em;
+        margin-left:1em
     }
 
     &__rightElementRate {
-        margin-top:1.5em;
+        margin-top: 1.5em;
     }
 
     &__rightElementContent {
@@ -192,4 +212,121 @@
         font-size: 1em;
         margin: 1em 0;
     }
+
+    &__userNotFoundContainer {
+        display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: calc(100vh - 7em);
+        padding-bottom: 5em;
+    }
+
+    &__userNotFoundImage {
+        width: 30em;
+    }
+
+    &__userNotFoundText {
+        font-weight: 800;
+        color: $primary-color;
+        font-size: 1.5em;
+        margin-top: 2em;
+        padding: 0 2em;
+        text-align: center;
+    }
+
+    &__rightNoElement {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 1.3em;
+        font-weight: 800;
+        transform: translate(-50%, -50%);
+        color: white;
+    }
+}
+
+@media(max-width:1100px) {
+    #RightElementFlex1{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #RightElementFlex2{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .user{
+        &__rightElementDate{
+            margin-left: 0;
+            margin-top:1em;
+        }
+
+        &__leftContainer{
+            padding:3em 3em
+        }
+
+        &__rightElementRate{
+            margin-top:1em
+        }
+    }
+}
+
+@media(max-width:950px) {
+    .user{
+        &__leftContainer{
+            padding:3em 1em
+        }
+    }
+}
+
+@media(max-width:830px) {
+    .user{
+        &__globalContainer{
+            flex-direction:column;
+        }
+
+        &__leftContainer{
+            min-height:0;
+        }
+    }
+}
+
+@media(max-width:500px) {
+    .user{
+        &__globalContainer{
+            padding-top: 3em;
+        }
+        &__avatar{
+            width:6em;
+            height:6em;
+            margin-right: 0;
+            margin-bottom: 1em;
+        }
+
+        &__bandeauContainer{
+            flex-direction: column;
+        }
+
+        &__createdTime{
+            text-align: center;
+        }
+
+        &__numbers{
+            margin-left:1em;
+        }
+
+        &__logOutButton{
+            margin-right: 0;
+        }
+    }
+
+    #flexContainer1{
+        justify-content: center;
+    }
+
+    
 }

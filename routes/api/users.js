@@ -140,8 +140,8 @@ router.get('/getById', (req, res) => {
   User.find({ _id: req.query.user_id }, function (err, user) {
     if (user) {
       res.status(200).send({ user: user[0] })
-    } else {
-      res.status(400).send(err)
+    } else if(!user){
+      res.status(200).send({user:null})
     }
   })
 })
@@ -282,6 +282,45 @@ router.post('/changePassword', (req, res) => {
     }
   })
   // 
+})
+
+// @route GET api/users/getSearchResults
+// @desc get 5 users profiles corresponding to username param
+// @access Public
+router.get('/checkIfEmail', (req, res) => {
+  User.findOne({ email: req.query.email }, function (err, user) {
+    if (err) {
+      res.status(200).send({ error: err })
+    } else if (user) {
+      res.status(200).send({ success: user })
+
+    } else {
+      res.status(200).send({ error: "L'adresse email n'existe pas" })
+
+    }
+  })
+})
+
+// @route GET api/users/getSearchResults
+// @desc get 5 users profiles corresponding to username param
+// @access Public
+router.post('/setNewPassword', (req, res) => {
+  user_id = req.body.user_id;
+  new_password = req.body.new_password;
+
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(new_password, salt, (error, hash) => {
+      if (err) throw error;
+      User.findByIdAndUpdate({ _id: user_id }, { password: hash }, { new: true }, function (problem, user) {
+        if (problem) throw problem;
+        if (user) {
+          Mails.changePasswordMail(req.body.email)
+          res.status(200).send({ success: "password updated" })
+        }
+      })
+    })
+  })
+
 })
 
 module.exports = router;

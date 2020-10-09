@@ -16,7 +16,7 @@ const Menu = (props) => {
 
         async function fetchNotifications() {
             if (props.auth.isAuthenticated) {
-                let notificationsNbrResponse = await  getNewNotificationsNumber(props.auth.user._id);
+                let notificationsNbrResponse = await getNewNotificationsNumber(props.auth.user._id);
                 setNotificationsNbr(notificationsNbrResponse.data.notifications_number)
             }
         }
@@ -25,11 +25,7 @@ const Menu = (props) => {
     })
 
     function changeRoute(route) {
-        if (props.auth.isAuthenticated) {
-            window.location.href = route
-        } else {
-            window.location.href = "/login"
-        }
+        window.location.href = route
     }
 
     return (
@@ -39,17 +35,18 @@ const Menu = (props) => {
                     <img src={Logo} className="Menu__logo colorToFilterBase" />
                     <button onClick={() => { props.setMenuState() }} className="Menu__closeButton ">FERMER <img src={Close} className="Menu__closeIcon colorToFilterBase" /></button>
                 </div>
-                {props.auth.isAuthenticated ?
-                    <Profile auth={props.auth} />
-                    :
-                    <div className="Menu__option" onClick={() => { changeRoute("/addSpot") }}>Se connecter - S'inscrire</div>
-                }
-                <div className="Menu__option " onClick={() => { changeRoute("/") }}>Accueil</div>
-                <div className="Menu__option " onClick={() => { changeRoute("/notifications") }}>Notifications <div className="Menu__notificationsNbr">{notificationsNbr}</div></div>
-                <div className="Menu__option Menu__new" onClick={() => { changeRoute("/addSpot") }}>Ajouter un spot</div>
-                <div className="Menu__option Menu__beta" onClick={() => { changeRoute("/spotsAroundMe") }}>Spots autour de moi</div>
-                <div className="Menu__option " onClick={() => { changeRoute("/help") }}>Aide</div>
-
+                <div className="Menu__optionsContainer">
+                    {props.auth.isAuthenticated ?
+                        <Profile auth={props.auth} />
+                        :
+                        <div className="Menu__option" onClick={() => { changeRoute("/addSpot") }}>Se connecter - S'inscrire</div>
+                    }
+                    <div className="Menu__option " onClick={() => { changeRoute("/") }}>Accueil</div>
+                    <div className="Menu__option " onClick={() => { changeRoute("/notifications") }}>Notifications <div className="Menu__notificationsNbr">{notificationsNbr}</div></div>
+                    <div className="Menu__option Menu__new" onClick={() => { changeRoute("/addSpot") }}>Ajouter un spot</div>
+                    <div className="Menu__option Menu__beta" onClick={() => { changeRoute("/shopsAroundMe") }}>Shops autour de moi</div>
+                    <div className="Menu__option " onClick={() => { changeRoute("/help") }}>Aide</div>
+                </div>
             </div>
             <div className="Menu__mapOverlay" style={{ display: props.menu.isMenuOpened ? "inherit" : "none" }} onClick={() => { props.setMenuState() }}></div>
 

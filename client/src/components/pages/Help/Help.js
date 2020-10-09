@@ -74,7 +74,7 @@ class Help extends React.Component {
 
                         <h1 className="help__title" id="Avec_quels_dispositifs_utiliser_Spoots_?">Avec quels dispositifs utiliser Spoots </h1>
                         <p className="help__text">
-                            Spoots est suportés par Firefox, Chrome et Opéra que ce soit sur téléphone ou ordinateur.
+                            Spoots est suportés par les naviguateurs Firefox, Chrome, Edge et Opéra que ce soit sur téléphone ou ordinateur.
                     </p>
                     </div>
                 </div>

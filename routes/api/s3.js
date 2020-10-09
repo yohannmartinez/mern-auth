@@ -9,8 +9,8 @@ const bluebird = require('bluebird');
 const multiparty = require('multiparty');
 
 AWS.config.update({
-  accessKeyId: "AKIAJAAB7JIQO5HXRNQA",
-  secretAccessKey: "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"
+  accessKeyId: process.env.S3_ACCESS_KEY,
+  secretAccessKey: process.env.S3_SECRET,
 });
 
 // configure AWS to work with promises

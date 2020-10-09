@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+require('dotenv').config()
 const passport = require("passport");
 
 const users = require("./routes/api/users");
@@ -45,6 +46,8 @@ app.use("/api/notifications", notifications);
 app.use("/api/emailCheckTokens", emailCheckTokens);
 app.use("/api/forgotPasswordTokens", forgotPasswordTokens);
 app.use("/api/s3", s3);
+
+console.log(process.env.TEST)
 
 const port = process.env.PORT || 5000;
 

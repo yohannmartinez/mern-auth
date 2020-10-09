@@ -1,4 +1,4 @@
 module.exports = {
-  mongoURI: "mongodb://admin:u2315125o@ds129540.mlab.com:29540/mispots",
-  secretOrKey: "secret"
+  mongoURI: process.env.MONGO_URI,
+  secretOrKey: process.env.MONGO_SECRET,
 };

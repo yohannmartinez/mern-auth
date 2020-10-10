@@ -29,11 +29,12 @@ class EditAvatar extends React.Component {
         console.log(link)
         user.avatar = link.data.Location;
         updateUser(user, this.props.user._id, false)
+        window.location.reload()
     }
 
     resetAvatar() {
         let user = this.props.user;
-        user.avatar = "https://mispotsbucket.s3.eu-west-3.amazonaws.com/emptyuserphoto.png";
+        user.avatar = "https://spoots.s3.eu-west-3.amazonaws.com/emptyuserphoto.png";
         updateUser(user, this.props.user._id)
     }
 

@@ -56,7 +56,7 @@ const UserSchema = new Schema({
   },
   avatar: {
     type: String,
-    default: "https://mispotsbucket.s3.eu-west-3.amazonaws.com/emptyuserphoto.png",
+    default: "https://spoots.s3.eu-west-3.amazonaws.com/emptyuserphoto.png",
     required: true,
   },
 });

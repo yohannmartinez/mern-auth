@@ -1,4 +1,5 @@
 const express = require("express");
+const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 require('dotenv').config()
@@ -10,8 +11,7 @@ const notifications = require("./routes/api/notifications");
 const emailCheckTokens = require("./routes/api/emailCheckTokens");
 const forgotPasswordTokens = require("./routes/api/forgotPasswordTokens");
 const s3 = require("./routes/api/s3");
-
-const app = express();
+const path = require("path");
 
 // Bodyparser middleware
 app.use(
@@ -20,6 +20,8 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+
+app.use(express.static(path.join(__dirname, "client/build")))
 
 // DB Config
 const db = require("./config/keys").mongoURI;

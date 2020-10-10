@@ -13,7 +13,7 @@ function registerEmail(email, checkTokenEmail) {
     to: email,
     subject: "Spoots - Confirmation de création du compte",
     html: `<div style="text-align:center;background-color:white;display:block;padding:15px;margin:20px 20px;">
-      <img src="https://mispotsbucket.s3.eu-west-3.amazonaws.com/logo.png"/>
+      <img src="https://spoots.s3.eu-west-3.amazonaws.com/logo.png"/>
       <p style="font-weight:700;font-size:12px;color:#292841;display:block">Bonjour,<br>Votre compte à bien été créé, pour finaliser l'inscription merci de confirmer votre adresse email en allant sur le lien ci-dessous</p>
       <a  href="http://localhost:3000/mailConfirm/${checkTokenEmail}" style="padding:7px 15px;display:inline-block;border-radius:5px;background-color:#292841;color:white;font-weight:700;text-decoration:none">Confirmer votre compte</a>
       <p style="font-weight:700;font-size:12px;color:#292841;display:block">Cordialement,
@@ -28,7 +28,7 @@ function changeEmailAddressMail(oldEmail) {
     to: oldEmail,
     subject: "Spoots - Changement d'adresse e-mail",
     html: `<div style="text-align:center;background-color:white;display:block;padding:15px;margin:20px 20px;">
-      <img src="https://mispotsbucket.s3.eu-west-3.amazonaws.com/logo.png"/>
+      <img src="https://spoots.s3.eu-west-3.amazonaws.com/logo.png"/>
       <p style="font-weight:700;font-size:12px;color:#292841;display:block">
       Cher utilisteur,<br>
       L'adresse email de votre compte spoots à été changée le ${new Date().toLocaleDateString()}
@@ -44,7 +44,7 @@ function changePasswordMail(email) {
     to: email,
     subject: "Spoots - Changement de mot de passe",
     html: `<div style="text-align:center;background-color:white;display:block;padding:15px;margin:20px 20px;">
-    <img src="https://mispotsbucket.s3.eu-west-3.amazonaws.com/logo.png"/>
+    <img src="https://spoots.s3.eu-west-3.amazonaws.com/logo.png"/>
     <p style="font-weight:700;font-size:12px;color:#292841;display:block">Bonjour, 
     <br>Le mot de passe de votre compte spoots à été changée le ${new Date().toLocaleDateString()}
     <br>Cordialement,
@@ -61,7 +61,7 @@ function forgotPassword(email, digit) {
     to: email,
     subject: "Spoots - Voici votre code",
     html: `<div style="text-align:center;background-color:white;display:block;padding:15px;margin:20px 20px;">
-      <img src="https://mispotsbucket.s3.eu-west-3.amazonaws.com/logo.png"/>
+      <img src="https://spoots.s3.eu-west-3.amazonaws.com/logo.png"/>
       <p style="font-weight:700;font-size:12px;color:#292841;display:block">Cher utilisateur, nous avons reçu une demande de réinitialisation<br>du mot de passe de votre compte Spoots</p>
       <p style="font-weight:700;font-size:20px;color:#292841;display:block;margin:20px 0">${digit}</p>
       <p style="font-weight:700;font-size:12px;color:#292841;display:block">Saisissez ce code pour terminer la réinisitialisation.</p>

@@ -27,7 +27,7 @@ const uploadFile = (buffer, name, type) => {
   const params = {
     ACL: 'public-read',
     Body: buffer,
-    Bucket: "mispotsbucket",
+    Bucket: "spoots",
     ContentType: type,
     Key: `${name}`,
   };
